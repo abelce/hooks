@@ -1,18 +1,19 @@
 {
   "name": "zhooks",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [
     "zhooks",
     "react hooks"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
   "files": [
     "dist",
     "lib",
     "es",
-    "metadata.json",
     "package.json",
     "README.md"
   ],

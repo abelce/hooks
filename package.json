@@ -3,16 +3,14 @@
   "version": "0.0.1",
   "description": "A react library developed with dumi",
   "license": "MIT",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "lib",
-    "es"
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "build": "father build",
     "build:watch": "father dev",
+    "clean": "lerna run clean",
     "dev": "dumi dev",
     "docs:build": "dumi build",
     "doctor": "father doctor",
@@ -22,6 +20,10 @@
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
     "pretty": "pretty-quick --staged",
+    "prepublish": "pnpm run clean && pnpm run build",
+    "publish-beta": "lerna version prerelease --preid beta && pnpm run lerna publish from-git --dist-tag beta",
+    "publish-canary": "lerna version prerelease --preid canary && pnpm run lerna publish from-git --dist-tag canary",
+    "publish-stable": "lerna version && pnpm run lerna publish from-git",
     "start": "npm run dev"
   },
   "commitlint": {
@@ -56,6 +58,7 @@
     "eslint": "^8.23.0",
     "father": "^4.1.0",
     "husky": "^8.0.1",
+    "lerna": "^5.1.8",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.0.0",

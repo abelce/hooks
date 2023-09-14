@@ -1,0 +1,15 @@
+{
+  "packages": ["packages/*"],
+  "useNx": false,
+  "version": "independent",
+  "npmClient": "pnpm",
+  "command": {
+    "publish": {
+      "allowBranch": ["canary", "beta", "build/hooks"],
+      "ignoreChanges": ["*.md"],
+      "conventionalCommits": true,
+      "message": "chore(release): publish %s",
+      "registry": "http://registry.npm.al.com"
+    }
+  }
+}

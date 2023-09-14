@@ -4,5 +4,5 @@ export default defineConfig({
   // more father config: https://github.com/umijs/father/blob/master/docs/config.md
   esm: { output: 'dist' },
   cjs: { output: 'lib' },
-  umd: { output: 'umd' },
+  // umd: { output: 'umd' },
 });

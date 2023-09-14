@@ -1,16 +1,26 @@
 {
   "compilerOptions": {
+    "target": "ES5",
     "strict": true,
-    "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
-      "@@/*": [".dumi/tmp/*"],
-      "zhooks": ["./packages/hooks/src/index.ts"],
-      "@/*": ["src/*", "*"]
-    }
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
+    },
+    "typeRoots": ["node_modules/@types"]
   },
-  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test",
+    "docs",
+    "tests"
+  ]
 }
