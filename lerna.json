@@ -1,8 +1,7 @@
 {
   "useWorkspaces": true,
-  "useNx": false,
   "version": "independent",
-  "npmClient": "pnpm",
+  "npmClient": "yarn",
   "command": {
     "publish": {
       "allowBranch": ["canary", "beta", "build/hooks"],
