@@ -1,6 +1,7 @@
 {
   "name": "hooks",
   "version": "0.0.1",
+  "private": true,
   "description": "A react library developed with dumi",
   "license": "MIT",
   "workspaces": [
@@ -8,7 +9,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "father build",
+    "build": "father-build",
     "build:watch": "father dev",
     "clean": "lerna run clean",
     "dev": "dumi dev",
@@ -57,6 +58,7 @@
     "dumi": "^2.2.0",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
+    "father-build": "^1.22.5",
     "husky": "^8.0.1",
     "lerna": "^5.1.8",
     "lint-staged": "^13.0.3",
