@@ -9,6 +9,5 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^.+\\.(css|less)$': '<rootDir>/__mocks__/CSSStub.js',
-    '^github-markdown-css$': '<rootDir>/__mocks__/CSSStub.js',
   },
 };
