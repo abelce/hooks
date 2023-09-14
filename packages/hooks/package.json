@@ -1,0 +1,32 @@
+{
+  "name": "zhooks",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "zhooks",
+    "react hooks"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "metadata.json",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "authors": {
+    "name": "abelce",
+    "email": "1061225829@qq.com"
+  }
+}
