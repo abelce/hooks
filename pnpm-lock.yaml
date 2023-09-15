@@ -51,11 +51,8 @@ importers:
   packages/hooks:
     specifiers:
       '@babel/runtime': ^7.22.15
-      'react': ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.22.15
-    devDependencies:
-      react: 18.2.0
 
 packages:
 
