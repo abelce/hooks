@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-canary.1](https://github.com/abelce/hooks/compare/zhooks@0.0.2-canary.0...zhooks@0.0.2-canary.1) (2023-09-15)
+
+### Features
+
+- 🎸 调试 demo ([ed089e3](https://github.com/abelce/hooks/commit/ed089e358029c38c8b6633ca576e3ddab94a01b7))
+- 🎸 调试打包 ([cb39639](https://github.com/abelce/hooks/commit/cb3963903c46b033a0538d706cb4af4d31b2531e))
+
 ## 0.0.2-canary.0 (2023-09-14)
 
 ### Features
