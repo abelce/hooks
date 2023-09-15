@@ -33,16 +33,6 @@ export default defineConfig({
         },
       ],
     },
-    sidebar: {
-      // '/': [
-      //   {
-      //     title: 'Home',
-      //     path: 'index',
-      //     children: [],
-      //   },
-      // ],
-      // '/hooks': hooksMenus,
-    },
     prefersColor: { default: 'auto', switch: true },
     socialLinks: {
       github: 'https://github.com/abelce/hooks',
@@ -51,8 +41,6 @@ export default defineConfig({
   title: 'let-hooks',
   alias: {
     'let-hooks': path.resolve(__dirname, './packages/hooks/src'),
-    // "@let-hooks": path.resolve(__dirname, './packages/hooks/src'),
-    // '@dumiDemo': path.resolve(__dirname, './docs/demos'),
   },
   resolve: {
     docDirs: ['docs', 'packages/hooks/src'],
