@@ -19,10 +19,10 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "pretty": "pretty-quick --staged",
-    "prepublish": "yarn clean && yarn build",
-    "publish-beta": "lerna version prerelease --preid beta && yarn run lerna publish from-git --dist-tag beta",
-    "publish-canary": "lerna version prerelease --preid canary && yarn run lerna publish from-git --dist-tag canary",
-    "publish-stable": "lerna version && yarn run lerna publish from-git",
+    "prepublish": "pnpm clean && pnpm build",
+    "publish-beta": "lerna version prerelease --preid beta && pnpm run lerna publish from-git --dist-tag beta",
+    "publish-canary": "lerna version prerelease --preid canary && pnpm run lerna publish from-git --dist-tag canary",
+    "publish-stable": "lerna version && pnpm run lerna publish from-git",
     "start": "npm run dev"
   },
   "commitlint": {
