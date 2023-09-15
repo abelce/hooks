@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useRefCallback } from 'zhooks';
+import { useRefCallback } from 'xhooks';
 
 export default () => {
   const [count, setCount] = useState(0);
@@ -9,12 +9,14 @@ export default () => {
 
   const handleClick = useCallback(() => {
     return counter();
-  }, [])
-  
+  }, []);
+
   return (
     <div>
       <div>{count}</div>
-      <button onClick={handleClick}>点击</button>
+      <button type="button" onClick={handleClick}>
+        点击
+      </button>
     </div>
   );
 };

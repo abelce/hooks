@@ -4,7 +4,7 @@ import path from 'path';
 export default defineConfig({
   outputPath: 'docs-dist',
   themeConfig: {
-    name: 'zhooks',
+    name: 'xhooks',
     nav: {
       'zh-CN': [
         {
@@ -48,10 +48,10 @@ export default defineConfig({
       github: 'https://github.com/abelce/hooks',
     },
   },
-  title: 'zhooks',
+  title: 'xhooks',
   alias: {
-    zhooks: path.resolve(__dirname, './packages/hooks/src'),
-    // "@zhooks": path.resolve(__dirname, './packages/hooks/src'),
+    xhooks: path.resolve(__dirname, './packages/hooks/src'),
+    // "@xhooks": path.resolve(__dirname, './packages/hooks/src'),
     // '@dumiDemo': path.resolve(__dirname, './docs/demos'),
   },
   resolve: {

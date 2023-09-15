@@ -9,4 +9,4 @@ group: Effect
 
 ## 代码演示
 
-<code src="zhooks/useTitle/demos/base.tsx" title="基本用法" description="点击页面的title跟随变化"></code>
+<code src="xhooks/useTitle/demos/base.tsx" title="基本用法" description="点击页面的title跟随变化"></code>

@@ -22,6 +22,7 @@
     "**/__test__",
     "test",
     "docs",
-    "tests"
+    "tests",
+    "demos"
   ]
 }

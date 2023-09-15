@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.0.2-canary.2](https://github.com/abelce/hooks/compare/zhooks@0.0.2-canary.1...zhooks@0.0.2-canary.2) (2023-09-15)
+## [0.0.2-canary.2](https://github.com/abelce/hooks/compare/xhooks@0.0.2-canary.1...xhooks@0.0.2-canary.2) (2023-09-15)
 
 ### Features
 
 - 🎸 修改打包问题 ([beaf05b](https://github.com/abelce/hooks/commit/beaf05b8d470964b8391ff668a7f9dc549a0c886))
 
-## [0.0.2-canary.1](https://github.com/abelce/hooks/compare/zhooks@0.0.2-canary.0...zhooks@0.0.2-canary.1) (2023-09-15)
+## [0.0.2-canary.1](https://github.com/abelce/hooks/compare/xhooks@0.0.2-canary.0...xhooks@0.0.2-canary.1) (2023-09-15)
 
 ### Features
 

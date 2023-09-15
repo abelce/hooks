@@ -13,4 +13,4 @@ group: Effect
 
 ## 代码演示
 
-<code src="zhooks/useUpdate/demos/base.tsx"></code>
+<code src="xhooks/useUpdate/demos/base.tsx"></code>

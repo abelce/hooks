@@ -1,9 +1,9 @@
 {
-  "name": "zhooks",
+  "name": "xhooks",
   "version": "0.0.2-canary.2",
   "description": "",
   "keywords": [
-    "zhooks",
+    "xhooks",
     "react hooks"
   ],
   "license": "MIT",

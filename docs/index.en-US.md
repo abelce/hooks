@@ -1,6 +1,6 @@
 ---
 hero:
-  title: zHooks
+  title: xhooks
   description: A react hooks library
   actions:
     - text: 指南
