@@ -20,8 +20,8 @@
     "prepare": "husky install && dumi setup",
     "pretty": "pretty-quick --staged",
     "prepublish": "pnpm clean && pnpm build",
-    "publish-beta": "lerna version prerelease --preid beta && lerna publish from-git --dist-tag beta",
-    "publish-canary": "lerna version prerelease --preid canary && lerna publish from-git --dist-tag canary",
+    "publish-beta": " pnpm -r --filter=./packages/* publish --tag beta",
+    "publish-canary": " pnpm -r --filter=./packages/* publish --tag canary",
     "publish-stable": "lerna version && lerna publish from-git",
     "start": "npm run dev"
   },
