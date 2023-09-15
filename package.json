@@ -8,10 +8,10 @@
     "packages/hooks"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
     "build": "father-build",
     "build:watch": "father dev",
-    "clean": "lerna run clean",
+    "clean": "pnpm run clean-dist && rimraf node_modules",
+    "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
     "dev": "dumi dev",
     "docs:build": "dumi build",
     "lint": "npm run lint:es && npm run lint:css",
@@ -19,11 +19,10 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "pretty": "pretty-quick --staged",
-    "prepublish": "pnpm clean && pnpm build",
-    "publish-beta": " pnpm -r --filter=./packages/* publish --tag beta",
-    "publish-canary": " pnpm -r --filter=./packages/* publish --tag canary",
-    "publish-stable": "lerna version && lerna publish from-git",
-    "start": "npm run dev"
+    "prepublish": "pnpm clean && pnpm run build",
+    "publish": "pnpm run build && pnpm -r --filter=./packages/* publish",
+    "publish-beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
+    "publish-canary": "pnpm run build && pnpm -r --filter=./packages/* publish --tag canary"
   },
   "commitlint": {
     "extends": [
@@ -60,7 +59,6 @@
     "father": "^4.1.0",
     "father-build": "^1.22.5",
     "husky": "^8.0.1",
-    "lerna": "^5.1.8",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.0.0",
