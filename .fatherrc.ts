@@ -8,5 +8,4 @@ export default {
     file: 'lib/index',
     lazy: true,
   },
-  pkgs: ['zhooks'],
 };

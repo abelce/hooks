@@ -5,7 +5,7 @@
   "description": "A react library developed with dumi",
   "license": "MIT",
   "workspaces": [
-    "packages/zhooks"
+    "packages/hooks"
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",

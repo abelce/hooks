@@ -7,7 +7,7 @@ const useRefCallback = <T extends Noop>(fn: T, deps: DependencyList): any => {
   ref.current = useCallback(fn, deps);
 
   return useCallback((...args: Parameters<T>): any => {
-    return ref.current?.(...args);
+    return ref.current?.(...(args as []));
   }, []);
 };
 
