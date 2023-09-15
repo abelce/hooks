@@ -1,9 +1,9 @@
 {
-  "name": "xhooks",
+  "name": "let-hooks",
   "version": "0.0.2-canary.3",
   "description": "",
   "keywords": [
-    "xhooks",
+    "let-hooks",
     "react hooks"
   ],
   "license": "MIT",
@@ -33,5 +33,5 @@
     "name": "abelce",
     "email": "1061225829@qq.com"
   },
-  "gitHead": "505617ce1f2c3a59326bb241eb1892dfd0783f89"
+  "gitHead": "8505f9cd645b3def083b23501c32f70a7a9e004e"
 }

@@ -1,5 +1,5 @@
+import { useUpdate } from 'let-hooks';
 import React from 'react';
-import { useUpdate } from 'xhooks';
 
 export default () => {
   const update = useUpdate();

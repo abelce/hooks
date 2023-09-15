@@ -1,5 +1,5 @@
+import { useTitle } from 'let-hooks';
 import React, { useCallback, useState } from 'react';
-import { useTitle } from 'xhooks';
 
 export default () => {
   const [count, setCount] = useState(0);

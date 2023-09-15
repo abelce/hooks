@@ -14,13 +14,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - 🎸 调试 demo ([ed089e3](https://github.com/abelce/hooks/commit/ed089e358029c38c8b6633ca576e3ddab94a01b7))
 - 🎸 调试打包 ([cb39639](https://github.com/abelce/hooks/commit/cb3963903c46b033a0538d706cb4af4d31b2531e))
 
-## [0.0.2-canary.2](https://github.com/abelce/hooks/compare/xhooks@0.0.2-canary.1...xhooks@0.0.2-canary.2) (2023-09-15)
+## [0.0.2-canary.2](https://github.com/abelce/hooks/compare/let-hooks@0.0.2-canary.1...let-hooks@0.0.2-canary.2) (2023-09-15)
 
 ### Features
 
 - 🎸 修改打包问题 ([beaf05b](https://github.com/abelce/hooks/commit/beaf05b8d470964b8391ff668a7f9dc549a0c886))
 
-## [0.0.2-canary.1](https://github.com/abelce/hooks/compare/xhooks@0.0.2-canary.0...xhooks@0.0.2-canary.1) (2023-09-15)
+## [0.0.2-canary.1](https://github.com/abelce/hooks/compare/let-hooks@0.0.2-canary.0...let-hooks@0.0.2-canary.1) (2023-09-15)
 
 ### Features
 

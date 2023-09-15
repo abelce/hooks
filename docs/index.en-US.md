@@ -1,6 +1,6 @@
 ---
 hero:
-  title: xhooks
+  title: let-hooks
   description: A react hooks library
   actions:
     - text: 指南
