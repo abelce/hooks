@@ -7,4 +7,5 @@ export { default as useTimeout } from './useTimeout';
 export { default as useTimeoutFn } from './useTimeoutFn';
 // export { default as useCss } from './useCss';
 export { default as useTitle } from './useTitle';
+export { default as useToggle } from './useToggle';
 export { default as useUpdate } from './useUpdate';
