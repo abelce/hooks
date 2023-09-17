@@ -38,7 +38,7 @@ importers:
       '@types/react': 18.2.21
       '@types/react-dom': 18.2.7
       '@umijs/lint': 4.0.81_ha7duvhckrya6r3zvw2wy2lyhy
-      dumi: 2.2.7_zlds2xbug5e7n2i5fft7j5gm3a
+      dumi: 2.2.7_vjzjwn3ex7fxbku3vb3rhxvwpq
       eslint: 8.49.0
       father: 4.3.4_siexzev5l4bvhza5ne35mlmjcu
       father-build: 1.22.5_webpack@5.88.2
@@ -119,6 +119,11 @@ packages:
     dependencies:
       '@babel/highlight': 7.22.13
       chalk: 2.4.2
+
+  /@babel/compat-data/7.22.20:
+    resolution: {integrity: sha512-BQYjKbpXjoXwFW5jGqiizJQQT/aC7pFm9Ok1OWssonuguICi264lbgMzRp2ZMmRSlfkX6DsWDDcsrctK8Rwfiw==}
+    engines: {node: '>=6.9.0'}
+    dev: true
 
   /@babel/compat-data/7.22.9:
     resolution: {integrity: sha512-5UamI7xkUcJ3i9qVDS+KFDEK8/7oJ55/sJMB1Ge7IEapr7KfdfV/HErR+koZwOfd+SgtFKOKRhRakdg++DcJpQ==}
@@ -1721,7 +1726,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.22.9
+      '@babel/compat-data': 7.22.20
       '@babel/core': 7.22.19
       '@babel/helper-compilation-targets': 7.22.15
       '@babel/helper-plugin-utils': 7.22.5
@@ -2303,13 +2308,13 @@ packages:
       semver: 5.7.2
     dev: true
 
-  /@babel/preset-env/7.22.15_@babel+core@7.22.19:
-    resolution: {integrity: sha512-tZFHr54GBkHk6hQuVA8w4Fmq+MSPsfvMG0vPnOYyTnJpyfMqybL8/MbNCPRT9zc2KBO2pe4tq15g6Uno4Jpoag==}
+  /@babel/preset-env/7.22.20_@babel+core@7.22.19:
+    resolution: {integrity: sha512-11MY04gGC4kSzlPHRfvVkNAZhUxOvm7DCJ37hPDnUENwe06npjIRAfInEMTGSb4LZK5ZgDFkv5hw0lGebHeTyg==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/compat-data': 7.22.9
+      '@babel/compat-data': 7.22.20
       '@babel/core': 7.22.19
       '@babel/helper-compilation-targets': 7.22.15
       '@babel/helper-plugin-utils': 7.22.5
@@ -5075,7 +5080,7 @@ packages:
       - supports-color
     dev: true
 
-  /@umijs/bundler-vite/4.0.81_6u7ls3x3n56amtp3x6gtfghthy:
+  /@umijs/bundler-vite/4.0.81_io3l7svltn3v5wlhu6tjttqhje:
     resolution: {integrity: sha512-gYRI8DxK5sQFWKWCkde+gujUDpoJVlqUR4fQkh2wVxLCs2JJ1aWMuepDTjoCeKzL7iaVqwN6+7IAebCNJL0I3A==}
     hasBin: true
     dependencies:
@@ -5085,7 +5090,7 @@ packages:
       '@vitejs/plugin-react': 4.0.0_vite@4.3.1
       less: 4.1.3
       postcss-preset-env: 7.5.0_postcss@8.4.29
-      rollup-plugin-visualizer: 5.9.0_rollup@2.79.1
+      rollup-plugin-visualizer: 5.9.0_rollup@2.33.3
       vite: 4.3.1_adakr4jbxh6yf262kjjikn653m
     transitivePeerDependencies:
       - '@types/node'
@@ -5341,7 +5346,7 @@ packages:
       tsx: 3.12.10
     dev: true
 
-  /@umijs/preset-umi/4.0.81_w5wswwjbplog7jwgetvkt3275y:
+  /@umijs/preset-umi/4.0.81_zcwvmafqqy7gth7vjnzlb4l4tm:
     resolution: {integrity: sha512-BOoBUAtSKq/+hpyX9B25Yfh5DpMLHTGoUsdj5DBMzgWlzvslcYmurswaTGgcYD5JjTjKfEfn0vspDYgGNV71RA==}
     dependencies:
       '@iconify/utils': 2.1.1
@@ -5350,7 +5355,7 @@ packages:
       '@umijs/babel-preset-umi': 4.0.81_styled-components@6.0.8
       '@umijs/bundler-esbuild': 4.0.81
       '@umijs/bundler-utils': 4.0.81
-      '@umijs/bundler-vite': 4.0.81_6u7ls3x3n56amtp3x6gtfghthy
+      '@umijs/bundler-vite': 4.0.81_io3l7svltn3v5wlhu6tjttqhje
       '@umijs/bundler-webpack': 4.0.81_mqx4g5tn3na3hdphvperzt5one
       '@umijs/core': 4.0.81
       '@umijs/did-you-know': 1.0.3
@@ -6353,7 +6358,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
     dependencies:
-      '@babel/compat-data': 7.22.9
+      '@babel/compat-data': 7.22.20
       '@babel/core': 7.22.19
       '@babel/helper-define-polyfill-provider': 0.4.2_@babel+core@7.22.19
       semver: 6.3.1
@@ -8405,7 +8410,7 @@ packages:
     resolution: {integrity: sha512-a/Y5lf0G6gwsEQ9hop/n03CcjmHsGBk384Cz/AEX6mRYrfSpUx/lQvP9HLoXkCzScl9PL1sSmLPnMkgaXDCZLA==}
     dev: true
 
-  /dumi/2.2.7_zlds2xbug5e7n2i5fft7j5gm3a:
+  /dumi/2.2.7_vjzjwn3ex7fxbku3vb3rhxvwpq:
     resolution: {integrity: sha512-6yM6Wr/YhVyOvvaiI/1NQWUkuZ48SLqUf5Mow4Dv9KaHP2KPI756WwWmzJS58JbYYyQDsEEc14j+lRZuyvJzBA==}
     hasBin: true
     peerDependencies:
@@ -8468,7 +8473,7 @@ packages:
       remark-rehype: 10.1.0
       sass: 1.67.0
       sitemap: 7.1.1
-      umi: 4.0.81_6tv37vh2mt2vmm2wp4lk5vs5v4
+      umi: 4.0.81_lbuuoxozpvhowhrxwdp2rxvw7i
       unified: 10.1.2
       unist-util-visit: 4.1.2
       unist-util-visit-parents: 5.1.3
@@ -12713,11 +12718,6 @@ packages:
     engines: {node: '>=6.11.5'}
     dev: true
 
-  /loader-runner/4.3.0:
-    resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
-    engines: {node: '>=6.11.5'}
-    dev: true
-
   /loader-utils/1.4.2:
     resolution: {integrity: sha512-I5d00Pd/jwMD2QCduo657+YM/6L3KZu++pmX9VFncxaxvHcru9jx1lBaFft+r4Mt2jK0Yhp41XlRAihzPxHNCg==}
     engines: {node: '>=4.0.0'}
@@ -16805,7 +16805,7 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /rollup-plugin-visualizer/5.9.0_rollup@2.79.1:
+  /rollup-plugin-visualizer/5.9.0_rollup@2.33.3:
     resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
     engines: {node: '>=14'}
     hasBin: true
@@ -16817,7 +16817,7 @@ packages:
     dependencies:
       open: 8.4.2
       picomatch: 2.3.1
-      rollup: 2.79.1
+      rollup: 2.33.3
       source-map: 0.7.4
       yargs: 17.7.2
     dev: true
@@ -16834,14 +16834,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.1.3
-    dev: true
-
-  /rollup/2.79.1:
-    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.3
     dev: true
 
   /rollup/3.29.1:
@@ -17755,7 +17747,7 @@ packages:
       '@babel/plugin-external-helpers': 7.22.5_@babel+core@7.22.19
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.22.19
       '@babel/plugin-proposal-object-rest-spread': 7.20.7_@babel+core@7.22.19
-      '@babel/preset-env': 7.22.15_@babel+core@7.22.19
+      '@babel/preset-env': 7.22.20_@babel+core@7.22.19
       '@babel/preset-react': 7.22.15_@babel+core@7.22.19
       '@babel/preset-typescript': 7.22.15_@babel+core@7.22.19
       '@babel/traverse': 7.22.19
@@ -18617,7 +18609,7 @@ packages:
     dev: true
     optional: true
 
-  /umi/4.0.81_6tv37vh2mt2vmm2wp4lk5vs5v4:
+  /umi/4.0.81_lbuuoxozpvhowhrxwdp2rxvw7i:
     resolution: {integrity: sha512-YK4gCrywiR3Ra3k2Gi6K3s1z4VgxMehrI6zdCVAHyd/i2DaTRDNImJrHwapYLUeZDHCslaXg3jl1Mrb53aFu/g==}
     engines: {node: '>=14'}
     hasBin: true
@@ -18627,7 +18619,7 @@ packages:
       '@umijs/bundler-webpack': 4.0.81_mqx4g5tn3na3hdphvperzt5one
       '@umijs/core': 4.0.81
       '@umijs/lint': 4.0.81_ha7duvhckrya6r3zvw2wy2lyhy
-      '@umijs/preset-umi': 4.0.81_w5wswwjbplog7jwgetvkt3275y
+      '@umijs/preset-umi': 4.0.81_zcwvmafqqy7gth7vjnzlb4l4tm
       '@umijs/renderer-react': 4.0.81_biqbaboplfbrettd7655fr4n2y
       '@umijs/server': 4.0.81
       '@umijs/test': 4.0.81_@babel+core@7.22.19
@@ -19268,7 +19260,7 @@ packages:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
       json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
+      loader-runner: 4.2.0
       mime-types: 2.1.35
       neo-async: 2.6.2
       schema-utils: 3.3.0
