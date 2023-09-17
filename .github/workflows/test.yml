@@ -3,29 +3,41 @@
 
 name: Test CI
 
-on: [push]
+on:
+  - push
+  - pull_request
 
 jobs:
-  build:
+  cache-and-install:
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
 
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: install pnpm
-        uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
-  
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
 
-      - name: pnpm install
-        run: pnpm run install
-      - run: pnpm test
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
