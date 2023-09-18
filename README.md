@@ -1,16 +1,34 @@
 # hooks
 
+A react hooks library
+
 [![NPM version](https://img.shields.io/npm/v/let-hooks.svg?style=flat)](https://npmjs.org/package/hooks)
-[![NPM downloads](http://img.shields.io/npm/abelce/let-hooks.svg?style=flat)](https://npmjs.org/package/let-hooks)
-
+![npm](https://img.shields.io/npm/dw/let-hooks)
 ![Coveralls branch](https://img.shields.io/coverallsCoverage/github/abelce/hooks?branch=main)
-![GitHub](https://img.shields.io/github/license/abelce/let-hooks)
+![GitHub](https://img.shields.io/github/license/abelce/hooks)
 
-A react library developed with dumi
+## 📚 Documentation
+
+[中文文档](https://let-hooks.vercel.app/)
+
+## Install
+
+```shell
+// npm
+npm install --save let-hooks
+// pnpm
+pnpm add let-hooks
+// yarn
+yarn let-hooks
+// bun
+bun add let-hooks
+```
 
 ## Usage
 
-TODO
+```js
+import { useUpdate } from 'let-hooks';
+```
 
 ## Options
 
