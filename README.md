@@ -1,6 +1,6 @@
 # hooks
 
-A react hooks library
+一个 React Hooks 库。
 
 [![NPM version](https://img.shields.io/npm/v/let-hooks.svg?style=flat)](https://npmjs.org/package/hooks)
 ![npm](https://img.shields.io/npm/dw/let-hooks)
@@ -9,18 +9,18 @@ A react hooks library
 
 ## 📚 Documentation
 
-[中文文档](https://let-hooks.vercel.app/)
+[文档地址](https://let-hooks.vwood.xyz/)
 
 ## Install
 
 ```shell
-// npm
+# npm
 npm install --save let-hooks
-// pnpm
+# pnpm
 pnpm add let-hooks
-// yarn
+# yarn
 yarn let-hooks
-// bun
+# bun
 bun add let-hooks
 ```
 
@@ -28,32 +28,6 @@ bun add let-hooks
 
 ```js
 import { useUpdate } from 'let-hooks';
-```
-
-## Options
-
-TODO
-
-## Development
-
-```bash
-# install dependencies
-$ pnpm install
-
-# develop library by docs demo
-$ pnpm start
-
-# build library source code
-$ pnpm run build
-
-# build library source code in watch mode
-$ pnpm run build:watch
-
-# build docs
-$ pnpm run docs:build
-
-# check your project for potential problems
-$ pnpm run doctor
 ```
 
 ## LICENSE
