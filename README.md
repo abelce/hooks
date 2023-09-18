@@ -35,6 +35,10 @@ $ pnpm run docs:build
 $ pnpm run doctor
 ```
 
+## 测试覆盖率
+
+[![Coverage Status](https://coveralls.io/repos/github/abelce/hooks/badge.svg)](https://coveralls.io/github/abelce/hooks)
+
 ## LICENSE
 
 MIT
