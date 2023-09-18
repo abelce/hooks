@@ -38,6 +38,19 @@ export default defineConfig({
       github: 'https://github.com/abelce/hooks',
     },
   },
+  sidebar: {
+    "/hooks": {
+      children: [
+        {
+          "useUpdate": {
+            title: "useUpdate",
+            link: "/useUpdate"
+          }
+        }
+      ]
+      
+  }
+  },
   title: 'let-hooks',
   alias: {
     'let-hooks': path.resolve(__dirname, './packages/hooks/src'),
@@ -51,4 +64,8 @@ export default defineConfig({
     { id: 'zh-CN', name: '中文' },
     { id: 'en-US', name: 'English' },
   ],
+  metas: [
+    { name: 'keywords', content: 'let-hooks, react, hooks' },
+  ],
+  footer: false
 });
