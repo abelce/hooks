@@ -45,5 +45,5 @@ jobs:
       - name: Build packages
         run: pnpm run build
 
-      - name: Pnpm run test
-        run: pnpm run test
+      - name: Pnpm run coveralls
+        run: pnpm run coveralls
