@@ -48,18 +48,16 @@
       "prettier --parser=typescript --write"
     ]
   },
-  "dependencies": {
-    "@testing-library/react": "^14.0.0",
-    "coveralls": "^3.1.1"
-  },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^14.0.0",
     "@types/jest": "^27.5.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
+    "coveralls": "^3.1.1",
     "dumi": "^2.2.0",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
