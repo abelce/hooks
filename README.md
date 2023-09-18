@@ -1,7 +1,10 @@
 # hooks
 
-[![NPM version](https://img.shields.io/npm/v/hooks.svg?style=flat)](https://npmjs.org/package/hooks)
-[![NPM downloads](http://img.shields.io/npm/dm/hooks.svg?style=flat)](https://npmjs.org/package/hooks)
+[![NPM version](https://img.shields.io/npm/v/let-hooks.svg?style=flat)](https://npmjs.org/package/hooks)
+[![NPM downloads](http://img.shields.io/npm/abelce/let-hooks.svg?style=flat)](https://npmjs.org/package/let-hooks)
+
+![Coveralls branch](https://img.shields.io/coverallsCoverage/github/abelce/hooks?branch=main)
+![GitHub](https://img.shields.io/github/license/abelce/let-hooks)
 
 A react library developed with dumi
 
@@ -34,10 +37,6 @@ $ pnpm run docs:build
 # check your project for potential problems
 $ pnpm run doctor
 ```
-
-## 测试覆盖率
-
-[![Coverage Status](https://coveralls.io/repos/github/abelce/hooks/badge.svg)](https://coveralls.io/github/abelce/hooks)
 
 ## LICENSE
 
