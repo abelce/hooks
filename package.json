@@ -1,9 +1,19 @@
 {
-  "name": "hooks",
-  "version": "0.0.2-canary.9",
-  "private": true,
+  "name": "let-hooks",
+  "version": "0.0.2-canary.10",
   "description": "A react library developed with dumi",
   "license": "MIT",
+  "main": "./lib/index.js",
+  "unpkg": "dist/let-hooks.min.js",
+  "module": "./es/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
