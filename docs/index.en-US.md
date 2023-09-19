@@ -18,5 +18,3 @@ hero:
 #     emoji: 🚀
 #     description: Put ! description here
 ---
-
-hooks
