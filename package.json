@@ -1,6 +1,6 @@
 {
   "name": "hooks",
-  "version": "0.0.2-canary.8",
+  "version": "0.0.2-canary.9",
   "private": true,
   "description": "A react library developed with dumi",
   "license": "MIT",
