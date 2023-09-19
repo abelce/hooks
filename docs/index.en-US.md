@@ -4,9 +4,9 @@ hero:
   description: A react hooks library
   actions:
     - text: 指南
-      link: /zh-CN/guide
+      link: /guide
     - text: Hooks
-      link: /zh-CN/hooks
+      link: /hooks
 # features:
 #   - title: Hello
 #     emoji: 💎
