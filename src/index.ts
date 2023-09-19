@@ -3,6 +3,7 @@ export { default as useDebounce } from './useDebounce';
 export { default as useDebounceFn } from './useDebounceFn';
 export { default as useEffectOnce } from './useEffectOnce';
 export { default as useEventAway } from './useEventAway';
+export { default as useFavicon } from './useFavicon';
 export { default as useInterval } from './useInterval';
 export { default as useMount } from './useMount';
 export { default as useRefCallback } from './useRefCallback';

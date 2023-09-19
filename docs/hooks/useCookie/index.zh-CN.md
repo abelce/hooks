@@ -1,6 +1,7 @@
 ---
 description: useCookie
 group: Effect
+toc: content
 ---
 
 # useCookie

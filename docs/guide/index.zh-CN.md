@@ -1,6 +1,10 @@
-# hooks
+---
+toc: content
+---
 
-一个 React Hooks 库。
+# 介绍
+
+let-hoos 是一个 一个 React Hooks 库，包含一些常用的 hooks。
 
 [![NPM version](https://img.shields.io/npm/v/let-hooks.svg?style=flat)](https://npmjs.org/package/hooks)
 ![npm](https://img.shields.io/npm/dw/let-hooks)

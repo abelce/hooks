@@ -37,15 +37,9 @@ export default defineConfig({
     socialLinks: {
       github: 'https://github.com/abelce/hooks',
     },
+    footer: false,
   },
-  // sidebar: {
-  //   '/hooks': {
-  //     useUpdate: {
-  //       title: 'useUpdate',
-  //       link: '/useUpdate',
-  //     },
-  //   },
-  // },
+
   title: 'let-hooks',
   alias: {
     'let-hooks': path.resolve(__dirname, './src'),

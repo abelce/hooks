@@ -1,6 +1,7 @@
 ---
 description: useDebounce
 group: Effect
+toc: content
 ---
 
 # useDebounce

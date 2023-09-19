@@ -1,6 +1,7 @@
 ---
 description: useTimeoutFn
 group: Effect
+toc: content
 ---
 
 # useTimeoutFn

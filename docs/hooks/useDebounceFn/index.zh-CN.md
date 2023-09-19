@@ -1,6 +1,7 @@
 ---
 description: useDebounceFn
 group: Effect
+toc: content
 ---
 
 # useDebounceFn
