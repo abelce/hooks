@@ -8,7 +8,7 @@
     "packages/hooks"
   ],
   "scripts": {
-    "build": "father-build",
+    "build": "father build",
     "build:watch": "father dev",
     "clean": "pnpm run clean-dist && rimraf node_modules",
     "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
@@ -48,12 +48,17 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "dependencies": {
+    "@babel/runtime": "^7.22.15",
+    "js-cookie": "^3.0.5"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^27.5.1",
+    "@types/js-cookie": "^3.0.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",

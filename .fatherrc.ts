@@ -1,11 +1,12 @@
 export default {
   esm: {
-    type: 'babel',
-    file: 'es/index',
+    output: 'es',
   },
   cjs: {
-    type: 'babel',
-    file: 'lib/index',
-    lazy: true,
+    platform: 'browser',
+    output: 'lib',
+  },
+  umd: {
+    output: 'dist',
   },
 };

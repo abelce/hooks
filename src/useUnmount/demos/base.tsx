@@ -11,10 +11,6 @@ const Children = () => {
 export default () => {
   const [key, setKey] = useState(1);
 
-  useUnmount(() => {
-    alert('卸载组件');
-  });
-
   const handleClick = useCallback(() => {
     setKey(key + 1);
   }, [key]);
