@@ -4,20 +4,23 @@ importers:
 
   .:
     specifiers:
+      '@babel/runtime': ^7.22.15
       '@commitlint/cli': ^17.1.2
       '@commitlint/config-conventional': ^17.1.0
       '@testing-library/jest-dom': ^5.15.1
       '@testing-library/react': ^14.0.0
       '@types/jest': ^27.5.1
+      '@types/js-cookie': ^3.0.4
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
       '@umijs/lint': ^4.0.0
       coveralls: ^3.1.1
-      dumi: ^2.2.0
+      dumi: ^2.2.7
       eslint: ^8.23.0
       father: ^4.1.0
       father-build: ^1.22.5
       husky: ^8.0.1
+      js-cookie: ^3.0.5
       lint-staged: ^13.0.3
       prettier: ^2.7.1
       prettier-plugin-organize-imports: ^3.0.0
@@ -27,12 +30,16 @@ importers:
       react-dom: ^18.0.0
       stylelint: ^14.9.1
       ts-jest: ^26.5.6
+    dependencies:
+      '@babel/runtime': 7.22.15
+      js-cookie: 3.0.5
     devDependencies:
       '@commitlint/cli': 17.7.1
       '@commitlint/config-conventional': 17.7.0
       '@testing-library/jest-dom': 5.17.0
       '@testing-library/react': 14.0.0_biqbaboplfbrettd7655fr4n2y
       '@types/jest': 27.5.2
+      '@types/js-cookie': 3.0.4
       '@types/react': 18.2.21
       '@types/react-dom': 18.2.7
       '@umijs/lint': 4.0.81_ha7duvhckrya6r3zvw2wy2lyhy
@@ -4866,7 +4873,7 @@ packages:
   /@types/sax/1.2.4:
     resolution: {integrity: sha512-pSAff4IAxJjfAXUG6tFkO7dsSbTmf8CtUpfhhZ5VhkRpC4628tJhh3+V6H1E+/Gs9piSzYKT5yzHO5M4GG9jkw==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 20.6.1
     dev: true
 
   /@types/scheduler/0.16.3:

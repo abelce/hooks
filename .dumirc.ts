@@ -37,18 +37,19 @@ export default defineConfig({
     socialLinks: {
       github: 'https://github.com/abelce/hooks',
     },
+    footer: false,
   },
+
   title: 'let-hooks',
   alias: {
-    'let-hooks': path.resolve(__dirname, './packages/hooks/src'),
+    'let-hooks': path.resolve(__dirname, './src'),
   },
-  apiParser: {},
   resolve: {
-    docDirs: ['docs', 'packages/hooks/src'],
-    entryFile: './packages/hooks/src/index.ts',
+    docDirs: ['docs', './src'],
   },
   locales: [
     { id: 'zh-CN', name: '中文' },
     { id: 'en-US', name: 'English' },
   ],
+  metas: [{ name: 'keywords', content: 'let-hooks, react, hooks' }],
 });

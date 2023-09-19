@@ -1,5 +1,4 @@
-import { Noop } from "../types";
-
+import { Noop } from '../types';
 
 const isFunction = (fn: Noop) => typeof fn === 'function';
 

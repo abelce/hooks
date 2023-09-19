@@ -1,6 +1,7 @@
 ---
 description: useMount
-group: Effect
+group: Lifecycle
+toc: content
 ---
 
 # useMount

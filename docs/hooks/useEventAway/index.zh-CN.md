@@ -1,6 +1,7 @@
 ---
 description: useEventAway 当事件在目标元素外触发时调用函数
 group: Effect
+toc: content
 ---
 
 # useEventAway

@@ -1,3 +1,7 @@
+---
+toc: content
+---
+
 # hooks
 
 A react hooks library

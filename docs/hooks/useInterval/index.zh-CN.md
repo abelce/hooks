@@ -1,6 +1,7 @@
 ---
 description: useInterval
 group: Effect
+toc: content
 ---
 
 # useInterval

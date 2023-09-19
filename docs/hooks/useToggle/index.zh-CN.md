@@ -1,6 +1,7 @@
 ---
 description: useToggle
-group: Effect
+group: State
+toc: content
 ---
 
 # useToggle

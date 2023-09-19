@@ -1,6 +1,7 @@
 ---
 description: useUnmount
-group: Effect
+group: Lifecycle
+toc: content
 ---
 
 # useUnmount

@@ -1,6 +1,7 @@
 ---
 description: useTimeout
 group: Effect
+toc: content
 ---
 
 # useTimeout

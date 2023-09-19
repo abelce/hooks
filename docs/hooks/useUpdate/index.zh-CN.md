@@ -1,6 +1,7 @@
 ---
 description: useUpdate返回一个函数，用来强制刷新组件。
 group: Effect
+toc: content
 ---
 
 # useUpdate

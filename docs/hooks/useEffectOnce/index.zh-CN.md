@@ -1,6 +1,7 @@
 ---
 description: useEffectOnce
 group: Effect
+toc: content
 ---
 
 # useEffectOnce
