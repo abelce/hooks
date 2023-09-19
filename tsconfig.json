@@ -23,6 +23,7 @@
     "test",
     "docs",
     "tests",
-    "demos"
+    "demos",
+    "coverage"
   ]
 }

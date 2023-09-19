@@ -1,12 +1,12 @@
 {
   "name": "let-hooks",
-  "version": "0.0.2-canary.10",
+  "version": "0.0.2",
   "description": "A react library developed with dumi",
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
   "unpkg": "dist/let-hooks.min.js",
-  "module": "./es/index.js",
-  "types": "./lib/index.d.ts",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "dist",
     "lib",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
-    "clean": "pnpm run clean-dist && rimraf node_modules",
+    "clean": "rimraf lib es dist",
     "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "dev": "dumi dev",
@@ -27,10 +27,10 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "pretty": "pretty-quick --staged",
+    "pro": "pnpm publish",
+    "pro-beta": "pnpm run build && pnpm publish --tag beta",
+    "pro-canary": "pnpm run build && pnpm publish --tag canary",
     "prepublish": "pnpm clean && pnpm run build",
-    "publish": "pnpm run build && pnpm -r --filter=./packages/* publish",
-    "publish-beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
-    "publish-canary": "pnpm run build && pnpm -r --filter=./packages/* publish --tag canary",
     "test": "jest"
   },
   "commitlint": {

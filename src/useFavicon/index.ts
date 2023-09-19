@@ -6,7 +6,6 @@ const useFavicon = (href: string) => {
       document.querySelector("link[rel*='icon']") ||
       document.createElement('link');
 
-    // const urlClips = (href || '').split('?')[0].split('.');
     link.type = 'image/x-icon';
     link.rel = 'shortcut icon';
     link.href = href;

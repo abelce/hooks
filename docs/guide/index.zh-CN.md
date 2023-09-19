@@ -33,4 +33,4 @@ import { useUpdate } from 'let-hooks';
 [1]: https://github.com/abelce/hooks
 [2]: https://npmjs.org/package/let-hooks
 [image-1]: https://img.shields.io/npm/v/let-hooks
-[image-2]: https://www.npmjs.com/package/let-hooks
+[image-2]: https://img.shields.io/npm/dw/let-hooks
