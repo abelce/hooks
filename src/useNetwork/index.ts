@@ -1,5 +1,5 @@
-import isObject from '@/utils.ts/isObject';
-import { useCallback, useEffect, useState } from 'react';
+import isNetworkInformation from '@/utils/isNetworkInformation';
+import { useEffect, useState } from 'react';
 
 export type Connenction = {
   effectiveType?: 'slow-2g' | '2g' | '3g' | '4g';
@@ -7,38 +7,57 @@ export type Connenction = {
   downlinkMax?: number;
   rtt?: number;
   saveData?: number;
+  type?:
+    | 'bluetooth'
+    | 'cellular'
+    | 'ethernet'
+    | 'wifi'
+    | 'wimax'
+    | 'none'
+    | 'other'
+    | 'unknown';
 };
+
+interface NavigatorConnenction extends Navigator {
+  connection?: Connenction;
+  webkitConnection?: Connenction;
+  mozConnection?: Connenction;
+}
 
 export type UseNetworkState = {
   online: boolean;
-  connection?: Connenction;
-};
+} & Connenction;
 
-const getConnectionInfo = (): Connenction => {
-  const nav = window.navigator;
+const getConnectionInfo = (): Connenction | undefined => {
+  const nav = window.navigator as NavigatorConnenction;
   const con = nav.connection || nav.webkitConnection || nav.mozConnection;
-  if (!isObject(con)) {
-    return {};
+  if (!isNetworkInformation(con)) {
+    return undefined;
   }
-
-  return con;
+  return {
+    effectiveType: con?.effectiveType,
+    downlink: con?.downlink,
+    downlinkMax: con?.downlinkMax,
+    rtt: con?.rtt,
+    saveData: con?.saveData,
+    type: con?.type,
+  };
 };
 
 const useNetwork = (): UseNetworkState => {
   const [state, setState] = useState<UseNetworkState>({
+    ...getConnectionInfo(),
     online: window.navigator.onLine,
-    connection: getConnectionInfo(),
   });
 
-  const changeOnlineState = useCallback((online: boolean) => {
-    setState((prevState) => ({
-      ...prevState,
-      connection: getConnectionInfo(),
-      online,
-    }));
-  }, []);
-
   useEffect(() => {
+    const changeOnlineState = (online: boolean) => {
+      setState(() => ({
+        online,
+        ...getConnectionInfo(),
+      }));
+    };
+
     const onlineHandler = () => {
       changeOnlineState(true);
     };
@@ -53,12 +72,16 @@ const useNetwork = (): UseNetworkState => {
     window.addEventListener('online', onlineHandler);
     window.addEventListener('offline', offlineHandler);
     window.addEventListener('change', changeHandler);
+
+    changeHandler();
     return () => {
       window.removeEventListener('online', onlineHandler);
       window.removeEventListener('offline', offlineHandler);
       window.removeEventListener('change', changeHandler);
     };
   }, []);
+
+  console.log(state);
 
   return state;
 };
