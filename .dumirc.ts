@@ -44,8 +44,10 @@ export default defineConfig({
   alias: {
     'let-hooks': path.resolve(__dirname, './src'),
   },
+  apiParser: {},
   resolve: {
     docDirs: ['docs', './src'],
+    entryFile: './src/index.ts',
   },
   locales: [
     { id: 'zh-CN', name: '中文' },

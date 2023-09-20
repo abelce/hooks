@@ -1,5 +1,6 @@
 export { default as useBattery } from './useBattery';
 export { default as useCookie } from './useCookie';
+export { default as useCounter } from './useCounter';
 export { default as useDebounce } from './useDebounce';
 export { default as useDebounceFn } from './useDebounceFn';
 export { default as useEffectOnce } from './useEffectOnce';
