@@ -81,8 +81,6 @@ const useNetwork = (): UseNetworkState => {
     };
   }, []);
 
-  console.log(state);
-
   return state;
 };
 
