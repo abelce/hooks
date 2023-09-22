@@ -6,7 +6,7 @@ hero:
     - text: 指南
       link: /guide
     - text: Hooks
-      link: /hooks
+      link: /hooks/use-update
 # features:
 #   - title: Hello
 #     emoji: 💎

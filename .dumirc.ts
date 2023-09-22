@@ -26,7 +26,7 @@ export default defineConfig({
         },
         {
           title: 'Hooks',
-          link: '/hooks',
+          link: '/hooks/use-update',
         },
         {
           title: 'Releases',
