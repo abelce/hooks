@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 type BatteryState = {
-  charging: boolean; // 是否正在充电
-  chargingTime: number; // 代表距离充电完毕还需多少秒，如果为 0 则充电完毕
-  dischargingTime: number; // 代表距离电池耗电至空且系统挂起需要多少秒
-  level: number; // 代表系统电量的水平，这个值放缩在 0.0 至 1.0 之间
+  charging?: boolean; // 是否正在充电
+  chargingTime?: number; // 代表距离充电完毕还需多少秒，如果为 0 则充电完毕
+  dischargingTime?: number; // 代表距离电池耗电至空且系统挂起需要多少秒
+  level?: number; // 代表系统电量的水平，这个值放缩在 0.0 至 1.0 之间
 };
 
 export interface BatteryManager extends Readonly<BatteryState>, EventTarget {
@@ -30,6 +30,7 @@ const useBattery = (): UseBatteryState => {
   const [state, setState] = useState<UseBatteryState>({
     isSupport: false,
   });
+
   useEffect(() => {
     let batteryManager: BatteryManager;
 
@@ -46,7 +47,7 @@ const useBattery = (): UseBatteryState => {
     if ('getBattery' in navigator) {
       (navigator as NavigatorBatteryManager)
         .getBattery?.()
-        .then(function (battery: BatteryManager) {
+        .then((battery: BatteryManager) => {
           batteryManager = battery;
 
           batteryManager.addEventListener('chargingchange', updateState);

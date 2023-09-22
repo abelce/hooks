@@ -2,13 +2,19 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Noop } from '../types';
 import useLatest from '../useLatest';
 
+export interface UseIntervalReturn {
+  run: () => void;
+  clear: () => void;
+  reset: () => void;
+}
+
 const useInterval = (
   fn: Noop,
   options?: {
     delay?: number;
     immediate?: boolean;
   },
-) => {
+): UseIntervalReturn => {
   const callback = useLatest<Noop>(fn);
   const interval = useRef<NodeJS.Timeout>();
 

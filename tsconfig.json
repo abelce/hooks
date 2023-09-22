@@ -5,11 +5,11 @@
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "strictNullChecks": true,
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["packages/hooks/src/.umi/*"]
+      "@/*": ["src/*"]
     },
     "typeRoots": ["node_modules/@types"]
   },

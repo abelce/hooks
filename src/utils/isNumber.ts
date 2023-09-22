@@ -1,3 +1,2 @@
-import toString from './toString';
-
-export default (num: unknown) => toString.call(num) === '[object Number]';
+export default (taregt: any) =>
+  typeof taregt === 'number' && !Number.isNaN(taregt);
