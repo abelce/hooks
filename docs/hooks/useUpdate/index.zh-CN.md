@@ -12,6 +12,18 @@ toc: content
 
 - 函数组件需要强制刷新时
 
+## API
+
+```ts
+const updator = useUpdate();
+```
+
 ## 代码演示
 
 <code src="let-hooks/useUpdate/demos/base.tsx"></code>
+
+## 返回值
+
+| 返回值  | 类型         | 描述     |
+| ------- | ------------ | -------- |
+| updator | `() => void` | 更新函数 |

@@ -51,7 +51,7 @@ export default defineConfig({
   },
   locales: [
     { id: 'zh-CN', name: '中文' },
-    { id: 'en-US', name: 'English' },
+    // { id: 'en-US', name: 'English' },
   ],
   metas: [{ name: 'keywords', content: 'let-hooks, react, hooks' }],
 });
