@@ -1,5 +1,5 @@
-import isNetworkInformation from '@/utils/isNetworkInformation';
 import { useEffect, useState } from 'react';
+import isNetworkInformation from '../utils/isNetworkInformation';
 
 export type Connenction = {
   effectiveType?: 'slow-2g' | '2g' | '3g' | '4g';

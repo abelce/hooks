@@ -1,5 +1,5 @@
-import isNumber from '@/utils/isNumber';
 import { useState } from 'react';
+import isNumber from '../utils/isNumber';
 
 type UseCounterOptions = {
   min?: number;
@@ -10,10 +10,10 @@ type UseCounterOptions = {
 const resolveValue = (value: number, min?: number, max?: number): number => {
   let result = value;
   if (isNumber(min)) {
-    result = Math.max(result, min);
+    result = Math.max(result, Number(min));
   }
   if (isNumber(max)) {
-    result = Math.min(result, max);
+    result = Math.min(result, Number(max));
   }
   return result;
 };
@@ -40,19 +40,19 @@ const useCounter = (
     resolveValue(initValue, options?.min, options?.max),
   );
 
-  const initDelta = isNumber(options?.delta) ? options?.delta : 1;
+  const initDelta = isNumber(options?.delta) ? Number(options?.delta) : 1;
 
   const setValue = (newValue: number) => {
     setCurrent(resolveValue(newValue, options?.min, options?.max));
   };
 
   const inc = (delta?: number) => {
-    const actDelta = isNumber(delta) ? delta : initDelta;
+    const actDelta = isNumber(delta) ? Number(delta) : initDelta;
     setValue(current + actDelta);
   };
 
   const dec = (delta?: number) => {
-    const actDelta = isNumber(delta) ? delta : initDelta;
+    const actDelta = isNumber(delta) ? Number(delta) : initDelta;
     setValue(current - actDelta);
   };
 
@@ -62,7 +62,7 @@ const useCounter = (
 
   const reset = (value?: number) => {
     if (isNumber(value)) {
-      setValue(value);
+      setValue(Number(value));
     } else {
       setValue(initValue);
     }

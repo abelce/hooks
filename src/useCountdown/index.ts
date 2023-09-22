@@ -1,7 +1,7 @@
 import { UseIntervalReturn } from '@/useInterval';
-import isNumber from '@/utils/isNumber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useInterval } from '..';
+import isNumber from '../utils/isNumber';
 
 interface UseCountdownParams {
   targetTime?: number;
@@ -73,11 +73,11 @@ const useCountdown = (params: UseCountdownParams = {}): UseCountdownReturn => {
   const ready = useRef(false);
   const interval = useRef<UseIntervalReturn>();
 
-  const targetTime = useMemo(() => {
-    if ('leftTime' in params && params.leftTime > 0) {
+  const targetTime = useMemo((): number => {
+    if (typeof params.leftTime === 'number' && params.leftTime > 0) {
       return Date.now() + params.leftTime;
     }
-    return params.targetTime;
+    return params.targetTime || Date.now();
   }, [params.targetTime, params.leftTime]);
 
   const [leftTime, setLeftTime] = useState(() => getLeftTime(targetTime));
