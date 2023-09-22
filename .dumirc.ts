@@ -13,7 +13,7 @@ export default defineConfig({
         },
         {
           title: 'hooks',
-          link: '/hooks',
+          link: '/hooks/use-update',
         },
         {
           title: '更新日志',
