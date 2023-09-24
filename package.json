@@ -31,7 +31,7 @@
     "pro-beta": "pnpm run build && pnpm publish --tag beta",
     "pro-canary": "pnpm run build && pnpm publish --tag canary",
     "prepublish": "pnpm clean && pnpm run build",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "commitlint": {
     "extends": [

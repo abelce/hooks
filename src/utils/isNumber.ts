@@ -1,2 +1,2 @@
-export default (taregt: any) =>
-  typeof taregt === 'number' && !Number.isNaN(taregt);
+export default (taregt: unknown): taregt is number =>
+  toString.call(taregt) === '[object Number]' && !Number.isNaN(taregt);

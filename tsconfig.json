@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
+    "downlevelIteration": true,
     "jsx": "react",
     "baseUrl": "./",
     "paths": {

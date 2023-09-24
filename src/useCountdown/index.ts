@@ -74,7 +74,7 @@ const useCountdown = (params: UseCountdownParams = {}): UseCountdownReturn => {
   const interval = useRef<UseIntervalReturn>();
 
   const targetTime = useMemo((): number => {
-    if (typeof params.leftTime === 'number' && params.leftTime > 0) {
+    if (isNumber(params.leftTime) && params.leftTime > 0) {
       return Date.now() + params.leftTime;
     }
     return params.targetTime || Date.now();
