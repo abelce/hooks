@@ -6,9 +6,8 @@ const useMemoizedFn = <T extends Noop>(fn: T) => {
 
   ref.current = useMemo(() => fn, [fn]);
 
-  // console.log("ref.current:", fn)
-  return useCallback((...args: Parameters<T>): ReturnType<T> => {
-    return ref.current?.(...(args as []));
+  return useCallback(function (...args: Parameters<T>): ReturnType<T> {
+    return ref.current.apply(this, args);
   }, []);
 };
 

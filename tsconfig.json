@@ -7,6 +7,7 @@
     "esModuleInterop": true,
     "strictNullChecks": true,
     "downlevelIteration": true,
+    "noImplicitThis": false,
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
@@ -19,11 +20,12 @@
     "lib",
     "es",
     "dist",
-    "**/__test__",
+    "**/__tests__",
     "test",
     "docs",
     "tests",
     "demos",
-    "coverage"
+    "coverage",
+    "jest.config.ts"
   ]
 }
