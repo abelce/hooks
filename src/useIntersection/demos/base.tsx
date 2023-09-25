@@ -1,25 +1,31 @@
-import { FC, RefObject, useRef } from 'react';
+import { FC, useRef } from 'react';
 import useIntersection from '..';
+import useMount from '../../useMount';
+import useMountedState from '../../useMountedState';
+import useUpdate from '../../useUpdate';
 
-const Children: FC<{ rootRef: RefObject<HTMLElement | null> }> = ({
-  rootRef,
-}) => {
+const Children: FC<{ root: HTMLElement }> = (props) => {
   const ref = useRef<HTMLElement>(null);
+  const entry = useIntersection(ref, { root: props.root, threshold: 1 });
 
-  const entry = useIntersection(ref, { root: rootRef.current });
-  console.log(entry);
-
-  return <div ref={ref}>sfa</div>;
+  return (
+    <div ref={ref} style={{ height: '100px', backgroundColor: 'red' }}>
+      {entry?.intersectionRatio < 1 ? '部分可见' : '完全可见'}
+    </div>
+  );
 };
 
 export default () => {
   const rootRef = useRef<HTMLElement>(null);
+  const isMounted = useMountedState();
+  const updator = useUpdate();
+  useMount(updator);
+
   return (
     <div style={{ height: '160px', overflowY: 'auto' }} ref={rootRef}>
-      <div style={{ height: '600px' }}>
-        <div style={{ marginTop: '300px' }}>
-          {rootRef && <Children rootRef={rootRef} />}
-        </div>
+      <div>滚动查看</div>
+      <div style={{ height: '600px', paddingTop: '300px' }}>
+        {isMounted() ? <Children root={rootRef.current} /> : null}
       </div>
     </div>
   );
