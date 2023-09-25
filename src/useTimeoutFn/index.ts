@@ -1,3 +1,4 @@
+import isFunction from '@/utils/isFunction';
 import { useCallback, useEffect, useRef } from 'react';
 import { Noop } from '../types';
 import useLatest from '../useLatest';
@@ -16,6 +17,10 @@ const useTimeoutFn = (
     immediate?: boolean;
   },
 ): UseTimeoutFnReturn => {
+  if (!isFunction(fn)) {
+    throw new Error('fn has to be a function, but got a ' + typeof fn);
+  }
+
   const timeoutRef = useRef<NodeJS.Timeout>();
   const readyRef = useRef<boolean | null>(null);
   const fnRef = useLatest(fn);
