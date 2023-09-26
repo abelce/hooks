@@ -31,7 +31,7 @@ const useCounter = (
   },
 ] => {
   if (!isNumber(initValue)) {
-    console.error(
+    throw new Error(
       'initValue has to be a number, but got a ' + typeof initValue,
     );
   }

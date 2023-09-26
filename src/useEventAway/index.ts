@@ -4,7 +4,7 @@ type DocumentEventKey = keyof DocumentEventMap;
 
 const defaultEvents = ['click'];
 
-const useEventAway = <E extends Event = Event>(
+const useEventAway = <E extends Event>(
   ref: RefObject<HTMLElement | null>,
   callback: (e: E) => void,
   options?: {

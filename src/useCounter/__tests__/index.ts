@@ -62,5 +62,21 @@ describe('Test useCounter', () => {
       result.current.result[1].reset();
     });
     expect(result.current.result[0]).toBe(4);
+    // reset to specified value
+    act(() => {
+      result.current.result[1].reset(20);
+    });
+    expect(result.current.result[0]).toBe(10);
+  });
+
+  it('initValue is a string', async () => {
+    expect(() => {
+      renderHook(() =>
+        useCounter('abc' as unknown as number, {
+          min: 0,
+          max: 10,
+        }),
+      );
+    }).toThrowError('initValue has to be a number, but got a string');
   });
 });

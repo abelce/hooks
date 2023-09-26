@@ -7,7 +7,6 @@ describe('Test useCountdown', () => {
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
     jest.useRealTimers();
   });
 
@@ -33,6 +32,26 @@ describe('Test useCountdown', () => {
       seconds: 0,
       milliseconds: 0,
     });
+  });
+
+  it('leftTime is not number', () => {
+    expect(() => {
+      renderHook(() =>
+        useCountdown({
+          leftTime: 'abc' as unknown as number,
+        }),
+      );
+    }).toThrowError('leftTime has to be a number, but got a string');
+  });
+
+  it('targetTime is not number', () => {
+    expect(() => {
+      renderHook(() =>
+        useCountdown({
+          targetTime: 'abc' as unknown as number,
+        }),
+      );
+    }).toThrowError('targetTime has to be a number, but got a string');
   });
 
   // it('should work correctly', () => {

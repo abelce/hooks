@@ -59,13 +59,13 @@ const formatLeftTime = (leftTime: number): CountdownFormatResult => {
 
 const useCountdown = (params: UseCountdownParams = {}): UseCountdownReturn => {
   if ('leftTime' in params && !isNumber(params.leftTime)) {
-    console.error(
+    throw new Error(
       'leftTime has to be a number, but got a ' + typeof params.leftTime,
     );
   }
 
   if ('targetTime' in params && !isNumber(params.targetTime)) {
-    console.error(
+    throw new Error(
       'targetTime has to be a number, but got a ' + typeof params.targetTime,
     );
   }
