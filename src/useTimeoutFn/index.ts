@@ -4,9 +4,9 @@ import { Noop } from '../types';
 import useLatest from '../useLatest';
 
 export type UseTimeoutFnReturn = {
-  run: () => void;
+  run: (...args: Parameters<Noop>) => void;
   isReady: () => boolean | null;
-  reset: () => void;
+  reset: (...args: Parameters<Noop>) => void;
   cancel: () => void;
 };
 
@@ -26,18 +26,21 @@ const useTimeoutFn = (
   const fnRef = useLatest(fn);
   const delay = options?.delay || 0;
 
-  const reset = useCallback(() => {
-    readyRef.current = false;
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+  const reset = useCallback(
+    (...args: Parameters<Noop>) => {
+      readyRef.current = false;
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
 
-    timeoutRef.current = setTimeout(() => {
-      readyRef.current = true;
-      fnRef.current?.();
-      clearTimeout(timeoutRef.current);
-    }, delay);
-  }, [delay]);
+      timeoutRef.current = setTimeout(() => {
+        readyRef.current = true;
+        fnRef.current?.(...args);
+        clearTimeout(timeoutRef.current);
+      }, delay);
+    },
+    [delay],
+  );
 
   const isReady = useCallback(() => readyRef.current, []);
 
