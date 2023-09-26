@@ -1,6 +1,6 @@
 ---
 description: useCountdown
-group: Effect
+group: State
 toc: content
 ---
 
