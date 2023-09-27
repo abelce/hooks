@@ -36,7 +36,7 @@ const useLRU = <K, V extends any = any>(
           cache.current.delete(key);
         }
 
-        if (cache.current.size > maxSize) {
+        if (cache.current.size >= maxSize) {
           const needDelKey = cache.current.keys().next().value;
           cache.current.delete(needDelKey);
         }
