@@ -1,7 +1,7 @@
 {
   "name": "let-hooks",
   "version": "0.0.3",
-  "description": "A react library developed with dumi",
+  "description": "A react hooks library",
   "license": "MIT",
   "main": "lib/index.js",
   "unpkg": "dist/let-hooks.min.js",

@@ -10,6 +10,7 @@ export { default as useEventAway } from './useEventAway';
 export { default as useFavicon } from './useFavicon';
 export { default as useIntersection } from './useIntersection';
 export { default as useInterval } from './useInterval';
+export { default as useLRU } from './useLRU';
 export { default as useMap } from './useMap';
 export { default as useMemoizedFn } from './useMemoizedFn';
 export { default as useMount } from './useMount';
