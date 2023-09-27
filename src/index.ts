@@ -9,6 +9,7 @@ export { default as useEffectOnce } from './useEffectOnce';
 export { default as useEventAway } from './useEventAway';
 export { default as useFavicon } from './useFavicon';
 export { default as useHash } from './useHash';
+export { default as useHidden } from './useHidden';
 export { default as useIntersection } from './useIntersection';
 export { default as useInterval } from './useInterval';
 export { default as useLRU } from './useLRU';
