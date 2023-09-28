@@ -1,10 +1,10 @@
 ---
-description: useQueue
+description: useStack
 group: State
 toc: content
 ---
 
-# useQueue
+# useStack
 
 使用栈的 hook
 
