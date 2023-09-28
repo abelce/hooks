@@ -1,6 +1,6 @@
 ---
 description: useQueue
-group: Effect
+group: State
 toc: content
 ---
 

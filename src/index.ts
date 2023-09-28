@@ -1,5 +1,6 @@
 export { default as useAsyncEffect } from './useAsyncEffect';
 export { default as useBattery } from './useBattery';
+export { default as useBeforeUnload } from './useBeforeUnload';
 export { default as useCookie } from './useCookie';
 export { default as useCountdown } from './useCountdown';
 export { default as useCounter } from './useCounter';

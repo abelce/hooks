@@ -1,6 +1,6 @@
 ---
 description: useCookie
-group: Effect
+group: SideEffects
 toc: content
 ---
 
