@@ -19,6 +19,7 @@ export { default as useMount } from './useMount';
 export { default as useMountedState } from './useMountedState';
 export { default as useNetwork } from './useNetwork';
 export { default as usePlatform } from './usePlatform';
+export { default as useQueue } from './useQueue';
 export { default as useSet } from './useSet';
 export { default as useStyle } from './useStyle';
 export { default as useTimeout } from './useTimeout';
