@@ -21,6 +21,7 @@ export { default as useNetwork } from './useNetwork';
 export { default as usePlatform } from './usePlatform';
 export { default as useQueue } from './useQueue';
 export { default as useSet } from './useSet';
+export { default as useStack } from './useStack';
 export { default as useStyle } from './useStyle';
 export { default as useTimeout } from './useTimeout';
 export { default as useTimeoutFn } from './useTimeoutFn';

@@ -6,7 +6,7 @@ toc: content
 
 # useQueue
 
-获取设备电池信息
+使用队列的 hook
 
 ## 代码演示
 
