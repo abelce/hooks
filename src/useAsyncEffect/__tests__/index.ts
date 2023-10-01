@@ -6,30 +6,27 @@ import sleep from '../../utils/sleep';
 
 describe('Test useAsyncEffect', () => {
   it('promise', async () => {
-    let value = 0;
+    const fn = jest.fn(() => {});
 
     renderHook(() =>
       useAsyncEffect(async () => {
-        await sleep(100);
-        value++;
+        await sleep(50);
+        fn();
+        expect(fn).toBeCalledTimes(1);
       }, []),
     );
-    expect(value).toBe(0);
-    await act(async () => {
-      await sleep(150);
-    });
-    expect(value).toBe(1);
+    expect(fn).toBeCalledTimes(0);
   });
 
   it('generator', async () => {
-    let value = 0;
+    const fn = jest.fn(() => {});
 
     const { result } = renderHook(() => {
       const [x, setX] = useState(0);
       useAsyncEffect(
         async function* () {
           await sleep(50);
-          yield ++value;
+          yield fn();
         },
         [x],
       );
@@ -37,19 +34,20 @@ describe('Test useAsyncEffect', () => {
         setX,
       };
     });
+    expect(fn).toBeCalledTimes(0);
 
     await act(async () => {
-      await sleep(100);
+      await sleep(50);
     });
-    expect(value).toBe(1);
+    expect(fn).toBeCalledTimes(1);
 
     act(() => {
       result.current.setX(1);
     });
     await act(async () => {
-      await sleep(100);
+      await sleep(50);
     });
-    expect(value).toBe(2);
+    expect(fn).toBeCalledTimes(2);
   });
 
   it('effect is not a fucntion', () => {
