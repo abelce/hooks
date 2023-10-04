@@ -3,6 +3,7 @@
     "target": "ES5",
     "strict": true,
     "declaration": true,
+    "importHelpers": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
