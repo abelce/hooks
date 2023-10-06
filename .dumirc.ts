@@ -54,4 +54,15 @@ export default defineConfig({
     // { id: 'en-US', name: 'English' },
   ],
   metas: [{ name: 'keywords', content: 'let-hooks, react, hooks' }],
+  chainWebpack: (memo) => {
+    memo.module
+      .rule('worker')
+      .test(/\.worker\.ts$/)
+      .use('worker-loader')
+      .loader('worker-loader')
+      .options({
+        inline: "fallback",
+      })
+      .end();
+  },
 });
