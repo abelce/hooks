@@ -1,5 +1,5 @@
-import { Noop } from '@/types';
 import isNumber from '@/utils/isNumber';
+import { autobind } from 'core-decorators';
 import TimerWorker from './timer.worker';
 import { MsgType, Task, WorkMsg } from './types';
 
@@ -18,9 +18,10 @@ const createMsg = (type: MsgType, taskId: number): WorkMsg => {
   };
 };
 
-class WorkTimer {
+@autobind
+class WorkerTimer {
   private taskMap = new Map<number, Task>();
-  private worker: Worker = new TimerWorker();
+  private worker: Worker = new TimerWorker('');
 
   constructor() {
     this.init();
@@ -30,7 +31,7 @@ class WorkTimer {
     this.onMessage();
   }
 
-  public setTimeout(callback: Noop, wait: number = 0) {
+  public setTimeout(callback: () => void, wait: number = 0): () => void {
     const newTask = createTask();
     newTask.handler = callback;
     this.taskMap.set(newTask.taskId, newTask);
@@ -38,6 +39,7 @@ class WorkTimer {
     const msg = createMsg(MsgType.Create, newTask.taskId);
     msg.wait = wait;
 
+    console.log(this.worker);
     this.worker.postMessage(msg);
 
     return () => {
@@ -72,7 +74,7 @@ class WorkTimer {
             return;
           }
           task.handler?.();
-          this.taskMap.set(data.taskId, task);
+          this.taskMap.delete(task.taskId);
           break;
         }
         case MsgType.Clear: {
@@ -84,4 +86,4 @@ class WorkTimer {
   }
 }
 
-export default WorkTimer;
+export default WorkerTimer;

@@ -39,7 +39,6 @@ export default defineConfig({
     },
     footer: false,
   },
-
   title: 'let-hooks',
   alias: {
     'let-hooks': path.resolve(__dirname, './src'),
@@ -61,8 +60,9 @@ export default defineConfig({
       .use('worker-loader')
       .loader('worker-loader')
       .options({
-        inline: "fallback",
+        inline: true,
       })
-      .end();
+      .end()
+      .before('jsx-ts-tsx');
   },
 });

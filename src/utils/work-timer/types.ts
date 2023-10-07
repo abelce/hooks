@@ -1,4 +1,4 @@
-import { Noop } from "@/types";
+import { Noop } from '@/types';
 
 export enum MsgType {
   Create,
@@ -6,16 +6,15 @@ export enum MsgType {
   Clear,
 }
 
-
 export type Task = {
   taskId: number;
   handler?: Noop;
   timer?: number;
-}
+};
 
 export type WorkMsg = {
   taskId: number;
   type: MsgType;
   wait?: number;
   timer?: number;
-}
+};

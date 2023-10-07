@@ -3,6 +3,7 @@ import useTimeoutFn from '..';
 
 describe('Test useTimeoutFn', () => {
   beforeEach(() => {
+    jest.mock('./__mocks__/myworker.worker.js');
     jest.useFakeTimers();
   });
   afterEach(() => {
@@ -61,4 +62,18 @@ describe('Test useTimeoutFn', () => {
     });
     expect(result.current.isReady()).toBe(true);
   });
+
+  // it('should timing with web worker', () => {
+  //   const fn = jest.fn(() => {});
+  //   const { result } = renderHook(() => useTimeoutFn(fn, { delay: 1000, webWorker: true }));
+  //   expect(result.current.isReady()).toBe(null);
+  //   // run
+  //   act(() => {
+  //     result.current.run();
+  //     jest.runAllTimers();
+  //   });
+  //   // expect(fn).toBeCalledTimes(1);
+  //   // isReady
+  //   expect(result.current.isReady()).toBe(true);
+  // });
 });

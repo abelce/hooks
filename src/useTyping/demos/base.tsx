@@ -21,6 +21,7 @@ export default () => {
     setTyping(true);
   });
   useTyping(handler, _ref);
+
   return (
     <div>
       <div>{typing ? '输入中...' : '未输入'}</div>
