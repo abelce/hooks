@@ -12,6 +12,7 @@ toc: content
 
 <code src="let-hooks/useTimeoutFn/demos/base.tsx" title="基本用法"></code>
 <code src="let-hooks/useTimeoutFn/demos/immediate.tsx" title="立即执行" description="设置immediate=true，会立即开始计时"></code>
+<code src="let-hooks/useTimeoutFn/demos/worker.tsx" title="使用web worker" description="使用webWorker进行计时"></code>
 
 ## 参数
 
@@ -22,10 +23,11 @@ toc: content
 
 ### options
 
-| 属性名    | 描述                                 | 类型      | 默认值 | 是否必填 |
-| --------- | ------------------------------------ | --------- | ------ | -------- |
-| delay     | 延迟时间（毫秒）                     | `number`  | 0      | --       |
-| immediate | 是否立即执行(设置后会立即开始倒计时) | `boolean` | false  | 非必填   |
+| 属性名    | 描述                                                                                    | 类型      | 默认值 | 是否必填 |
+| --------- | --------------------------------------------------------------------------------------- | --------- | ------ | -------- |
+| delay     | 延迟时间（毫秒）                                                                        | `number`  | 0      | --       |
+| immediate | 是否立即执行(设置后会立即开始倒计时)                                                    | `boolean` | false  | 非必填   |
+| webWorker | 是否使用 webworker 进行计时（页面处于非活跃状态时`setTimeout`会停止或以极慢的速度工作），页面处于非活跃状态也能正常运行 | `boolean` | false  | 非必填   |
 
 ## 返回值
 

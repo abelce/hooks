@@ -1,5 +1,5 @@
 import isNumber from '@/utils/isNumber';
-import { autobind } from 'core-decorators';
+import { autobind, readonly } from 'core-decorators';
 import TimerWorker from './timer.worker';
 import { MsgType, Task, WorkMsg } from './types';
 
@@ -21,6 +21,8 @@ const createMsg = (type: MsgType, taskId: number): WorkMsg => {
 @autobind
 class WorkerTimer {
   private taskMap = new Map<number, Task>();
+
+  @readonly
   private worker: Worker = new TimerWorker('');
 
   constructor() {
@@ -39,7 +41,6 @@ class WorkerTimer {
     const msg = createMsg(MsgType.Create, newTask.taskId);
     msg.wait = wait;
 
-    console.log(this.worker);
     this.worker.postMessage(msg);
 
     return () => {

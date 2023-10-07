@@ -3,7 +3,6 @@ import useTimeoutFn from '..';
 
 describe('Test useTimeoutFn', () => {
   beforeEach(() => {
-    jest.mock('./__mocks__/myworker.worker.js');
     jest.useFakeTimers();
   });
   afterEach(() => {
@@ -32,7 +31,6 @@ describe('Test useTimeoutFn', () => {
       result.current.run();
       jest.runAllTimers();
     });
-    // expect(fn).toBeCalledTimes(1);
     // isReady
     expect(result.current.isReady()).toBe(true);
     // reset

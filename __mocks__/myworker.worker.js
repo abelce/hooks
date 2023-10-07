@@ -9,7 +9,6 @@ class MyWorker {
   }
 }
 
-// @ts-ignore
 window.Worker = MyWorker;
 
-export default MyWorker;
+module.exports = MyWorker;

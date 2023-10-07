@@ -58,8 +58,7 @@
   "dependencies": {
     "@babel/runtime": "^7.22.15",
     "core-decorators": "^0.20.0",
-    "js-cookie": "^3.0.5",
-    "web-worker": "^1.2.0"
+    "js-cookie": "^3.0.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
