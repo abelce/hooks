@@ -33,8 +33,4 @@ webWorker.addEventListener('message', (message: MessageEvent) => {
   }
 });
 
-export default (class TimerWorker extends Worker {
-  constructor() {
-    super('');
-  }
-} as any);
+export default null as any;

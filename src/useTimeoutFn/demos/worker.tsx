@@ -10,8 +10,7 @@ export default () => {
     {
       delay: 5000,
       immediate: true,
-      webWorker: true,
-    
+      useWorker: true,
     },
   );
 

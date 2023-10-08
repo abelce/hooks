@@ -12,10 +12,10 @@ export type UseTimeoutFnReturn = {
 };
 
 const clearTimer = (
-  webWorker: boolean = false,
+  useWorker: boolean = false,
   timer: () => void | NodeJS.Timeout | undefined,
 ) => {
-  if (webWorker) {
+  if (useWorker) {
     timer?.();
   }
 
@@ -27,7 +27,7 @@ const useTimeoutFn = (
   options?: {
     delay?: number;
     immediate?: boolean;
-    webWorker?: boolean;
+    useWorker?: boolean;
   },
 ): UseTimeoutFnReturn => {
   if (!isFunction(fn)) {
@@ -43,16 +43,16 @@ const useTimeoutFn = (
     (...args: Parameters<Noop>) => {
       readyRef.current = false;
       if (timeoutRef.current) {
-        clearTimer(options?.webWorker, timeoutRef.current);
+        clearTimer(options?.useWorker, timeoutRef.current);
       }
 
       timeoutRef.current = (
-        options?.webWorker ? getWorkerTimer().setTimeout : setTimeout
+        options?.useWorker ? getWorkerTimer().setTimeout : setTimeout
       )(() => {
         readyRef.current = true;
         fnRef.current?.(...args);
         if (timeoutRef.current) {
-          clearTimer(options?.webWorker, timeoutRef.current);
+          clearTimer(options?.useWorker, timeoutRef.current);
         }
       }, delay) as () => void | NodeJS.Timeout;
     },
@@ -64,7 +64,7 @@ const useTimeoutFn = (
   const cancel = useCallback(() => {
     readyRef.current = null;
     if (timeoutRef.current) {
-      clearTimer(options?.webWorker, timeoutRef.current);
+      clearTimer(options?.useWorker, timeoutRef.current);
     }
   }, []);
 
