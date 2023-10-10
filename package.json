@@ -2,6 +2,12 @@
   "name": "let-hooks",
   "version": "0.0.5",
   "description": "A react hooks library",
+  "keywords": [
+    "react",
+    "hooks",
+    "typescript"
+  ],
+  "homepage": "https://let-hooks.vwood.xyz",
   "license": "MIT",
   "main": "lib/index.js",
   "unpkg": "dist/let-hooks.min.js",
@@ -94,7 +100,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "authors": [
-    "abelce 1061225829@qq.com"
-  ]
+  "authors": "<1061225829@qq.com>"
 }
