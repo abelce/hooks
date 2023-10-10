@@ -16,6 +16,7 @@ export { default as useInterval } from './useInterval';
 export { default as useLRU } from './useLRU';
 export { default as useMap } from './useMap';
 export { default as useMemoizedFn } from './useMemoizedFn';
+export { default as useMessage } from './useMessage';
 export { default as useMount } from './useMount';
 export { default as useMountedState } from './useMountedState';
 export { default as useNetwork } from './useNetwork';
