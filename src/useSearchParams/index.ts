@@ -1,5 +1,6 @@
 import isFunction from '@/utils/isFunction';
 import { useCallback, useEffect, useMemo } from 'react';
+import { useUpdate } from '..';
 
 export type URLSearchParamsInit =
   | string[][]
@@ -15,6 +16,8 @@ const createSearchParams = (init: URLSearchParamsInit): URLSearchParams =>
   new URLSearchParams(init);
 
 const useSearchParams = (): [URLSearchParams, SetURLSearchParams] => {
+  const update = useUpdate();
+
   const searchParams = useMemo(
     () => createSearchParams(location.search),
     [location.search],
@@ -33,9 +36,17 @@ const useSearchParams = (): [URLSearchParams, SetURLSearchParams] => {
   );
 
   useEffect(() => {
-    const callback = () => {};
+    const callback = () => {
+      update();
+    };
     window.addEventListener('popstate', callback, false);
     window.addEventListener('hashchange', callback, false);
+    window.addEventListener('replacestate', callback, false);
+    return () => {
+      window.addEventListener('popstate', callback, false);
+      window.addEventListener('hashchange', callback, false);
+      window.addEventListener('replacestate', callback, false);
+    };
   });
 
   return [searchParams, setSearchParams];
