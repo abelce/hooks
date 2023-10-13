@@ -1,6 +1,6 @@
 {
   "name": "let-hooks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A react hooks library",
   "keywords": [
     "react",
@@ -33,9 +33,9 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "pretty": "pretty-quick --staged",
-    "pro": "pnpm publish",
-    "pro-beta": "pnpm run build && pnpm publish --tag beta",
-    "pro-canary": "pnpm run build && pnpm publish --tag canary",
+    "prod": "pnpm publish",
+    "prod-beta": "pnpm run build && pnpm publish --tag beta",
+    "prod-canary": "pnpm run build && pnpm publish --tag canary",
     "prepublish": "pnpm clean && pnpm run build",
     "test": "jest --coverage"
   },
