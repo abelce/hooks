@@ -1,6 +1,7 @@
+import useHistory from '@/useHistory';
+import useLocation from '@/useLocation';
 import isFunction from '@/utils/isFunction';
-import { useCallback, useEffect, useMemo } from 'react';
-import { useUpdate } from '..';
+import { useCallback, useMemo } from 'react';
 
 export type URLSearchParamsInit =
   | string[][]
@@ -16,7 +17,8 @@ const createSearchParams = (init: URLSearchParamsInit): URLSearchParams =>
   new URLSearchParams(init);
 
 const useSearchParams = (): [URLSearchParams, SetURLSearchParams] => {
-  const update = useUpdate();
+  const history = useHistory();
+  const location = useLocation();
 
   const searchParams = useMemo(
     () => createSearchParams(location.search),
@@ -25,29 +27,16 @@ const useSearchParams = (): [URLSearchParams, SetURLSearchParams] => {
 
   const setSearchParams = useCallback<SetURLSearchParams>(
     (next) => {
-      const nextSearchParams = isFunction(next) ? next(searchParams) : next;
-      history.replaceState(
-        null,
-        '',
-        location.pathname + nextSearchParams.toString(),
+      const nextSearchParams = createSearchParams(
+        isFunction(next) ? next(searchParams) : next,
       );
+
+      history.replace({
+        search: nextSearchParams.toString(),
+      });
     },
     [searchParams],
   );
-
-  useEffect(() => {
-    const callback = () => {
-      update();
-    };
-    window.addEventListener('popstate', callback, false);
-    window.addEventListener('hashchange', callback, false);
-    window.addEventListener('replacestate', callback, false);
-    return () => {
-      window.addEventListener('popstate', callback, false);
-      window.addEventListener('hashchange', callback, false);
-      window.addEventListener('replacestate', callback, false);
-    };
-  });
 
   return [searchParams, setSearchParams];
 };
