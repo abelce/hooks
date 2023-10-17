@@ -1,13 +1,11 @@
 import { MsgType } from './types';
 
-const webWorker = self;
-
-webWorker.addEventListener('message', (message: MessageEvent) => {
+addEventListener('message', (message: MessageEvent) => {
   const data = message.data;
   switch (data.type) {
     case MsgType.Create: {
       const $timer = setTimeout(() => {
-        webWorker.postMessage({
+        postMessage({
           taskId: data.taskId,
           type: MsgType.Execute,
         });
@@ -15,7 +13,7 @@ webWorker.addEventListener('message', (message: MessageEvent) => {
         clearTimeout($timer);
       }, data.wait);
 
-      webWorker.postMessage({
+      postMessage({
         taskId: data.taskId,
         timer: $timer,
         type: MsgType.Create,
@@ -24,7 +22,7 @@ webWorker.addEventListener('message', (message: MessageEvent) => {
     }
     case MsgType.Clear: {
       clearTimeout(data.timerId);
-      webWorker.postMessage({
+      postMessage({
         taskId: data.taskId,
         type: MsgType.Clear,
       });
