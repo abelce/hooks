@@ -1,4 +1,5 @@
 export { default as useAsyncEffect } from './useAsyncEffect';
+export { default as useAsyncFn } from './useAsyncFn';
 export { default as useBattery } from './useBattery';
 export { default as useBeforeUnload } from './useBeforeUnload';
 export { default as useCookie } from './useCookie';
@@ -7,6 +8,7 @@ export { default as useCounter } from './useCounter';
 export { default as useDebounce } from './useDebounce';
 export { default as useDebounceFn } from './useDebounceFn';
 export { default as useEffectOnce } from './useEffectOnce';
+export { default as useEvent } from './useEvent';
 export { default as useEventAway } from './useEventAway';
 export { default as useFavicon } from './useFavicon';
 export { default as useHash } from './useHash';
