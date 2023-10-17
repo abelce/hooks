@@ -1,5 +1,4 @@
 export { default as useAsyncEffect } from './useAsyncEffect';
-export { default as useAsyncFn } from './useAsyncFn';
 export { default as useBattery } from './useBattery';
 export { default as useBeforeUnload } from './useBeforeUnload';
 export { default as useCookie } from './useCookie';
