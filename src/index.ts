@@ -1,4 +1,5 @@
 export { default as useAsyncEffect } from './useAsyncEffect';
+export { default as useAsyncFn } from './useAsyncFn';
 export { default as useBattery } from './useBattery';
 export { default as useBeforeUnload } from './useBeforeUnload';
 export { default as useCookie } from './useCookie';
@@ -15,8 +16,8 @@ export { default as useHidden } from './useHidden';
 export { default as useHistory } from './useHistory';
 export { default as useIntersection } from './useIntersection';
 export { default as useInterval } from './useInterval';
-export { default as useLocation } from './useLocation';
 export { default as useLRU } from './useLRU';
+export { default as useLocation } from './useLocation';
 export { default as useMap } from './useMap';
 export { default as useMemoizedFn } from './useMemoizedFn';
 export { default as useMessage } from './useMessage';
