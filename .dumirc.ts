@@ -38,6 +38,7 @@ export default defineConfig({
       github: 'https://github.com/abelce/hooks',
     },
     footer: false,
+    showLineNum: true,
   },
   title: 'let-hooks',
   alias: {
