@@ -3,6 +3,7 @@
   "version": "0.0.9",
   "description": "A react hooks library",
   "keywords": [
+    "let-hooks",
     "react",
     "hooks",
     "typescript"
@@ -94,8 +95,8 @@
     "worker-loader": "^2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": "^16.8.0  || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0  || ^17.0.0 || ^18.0.0"
   },
   "publishConfig": {
     "access": "public"

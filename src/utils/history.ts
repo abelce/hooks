@@ -83,7 +83,7 @@ export const createHistory = () => {
     },
     listen(fn: Listener) {
       const handlePop = () => {
-        let action = Action.Pop;
+        action = Action.Pop;
         listener?.({
           action,
           location: history.location,
