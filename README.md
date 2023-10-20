@@ -1,6 +1,6 @@
-# hooks
+# let-hooks
 
-一个 React Hooks 库。
+A react hooks library
 
 [![NPM version](https://img.shields.io/npm/v/let-hooks.svg?style=flat)](https://npmjs.org/package/hooks)
 ![npm](https://img.shields.io/npm/dw/let-hooks)
@@ -9,7 +9,7 @@
 
 ## 📚 Documentation
 
-[文档地址](https://let-hooks.vwood.xyz/)
+[document](https://let-hooks.vwood.xyz/)
 
 ## Install
 
