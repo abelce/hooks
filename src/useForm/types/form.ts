@@ -30,3 +30,7 @@ export type UseFormRegister = (
 export interface UseFormReturn {
   reggister: UseFormRegister;
 }
+
+export type FormState = {
+  isDirty: boolean;
+};
