@@ -10,6 +10,7 @@ export { default as useEffectOnce } from './useEffectOnce';
 export { default as useEvent } from './useEvent';
 export { default as useEventAway } from './useEventAway';
 export { default as useFavicon } from './useFavicon';
+export { default as useForm } from './useForm';
 export { default as useHash } from './useHash';
 export { default as useHidden } from './useHidden';
 export { default as useHistory } from './useHistory';

@@ -4,8 +4,31 @@
  * @returns
  */
 
-const useForm = () => {
-  // const fieldsRef = useRef<Record<string, HTMLElement>>({});
+import { useMemo, useRef, useState } from 'react';
+import { useUpdateEffect } from '..';
+import FormStore from './formStore';
+import FormField from './formStore/formField';
+
+export interface UseFormOptions {
+  initValues?: Record<string, any>;
+  disabled?: boolean;
+}
+
+const useForm = (options: UseFormOptions = {}) => {
+  const [formState, updateFormState] = useState<Record<string, FormField>>({});
+  console.log(formState);
+  const _formStateRef = useRef<FormStore>();
+
+  useMemo(() => {
+    _formStateRef.current = new FormStore(options);
+    _formStateRef.current.sub((formState) => {
+      updateFormState({ ...formState });
+    });
+  }, []);
+
+  useUpdateEffect(() => {}, []);
+
+  return _formStateRef.current;
 };
 
 export default useForm;
