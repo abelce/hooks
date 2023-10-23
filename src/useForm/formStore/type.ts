@@ -1,3 +1,4 @@
+import { ValidateError } from 'async-validator';
 import { ReactElement } from 'react';
 
 export type StoreValue = any;
@@ -82,3 +83,5 @@ interface BaseRule {
 }
 
 export type Aggregation = BaseRule;
+
+export type RuleValidateError = ValidateError;

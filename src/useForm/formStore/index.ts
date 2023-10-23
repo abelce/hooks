@@ -1,7 +1,7 @@
 import { autobind } from 'core-decorators';
 import { FormEvent } from 'react';
 import FormField, { FormFielOptions } from './formField';
-import { FormInstance } from './type';
+import { FormInstance, RuleValidateError, StoreValue } from './type';
 
 type Listener = (fieldsStateMap: Record<string, FormField>) => void;
 
@@ -15,6 +15,18 @@ class FormStore implements FormInstance {
   private listeners: Listener[] = [];
 
   private fieldsStateMap: Record<string, FormField> = {};
+
+  public get errors() {
+    return Object.values(this.fieldsStateMap).reduce(
+      (errors: RuleValidateError[], fieldState) => {
+        if (fieldState.errors?.length) {
+          return [...errors, ...fieldState.errors];
+        }
+        return errors;
+      },
+      [],
+    );
+  }
 
   constructor(public options: FormStateOptions = {}) {}
 
@@ -40,8 +52,17 @@ class FormStore implements FormInstance {
     return this.fieldsStateMap[name];
   }
 
+  public async validate() {
+    await Promise.all(
+      Object.values(this.fieldsStateMap).map((fieldState) =>
+        fieldState.validate(),
+      ),
+    );
+    this.flush();
+  }
+
   /**
-   * callback the listeners
+   * call the listeners
    */
   public flush() {
     this.listeners.forEach((l) => {
@@ -49,6 +70,7 @@ class FormStore implements FormInstance {
     });
   }
 
+  // call the listeners after state changed
   public sub(fn: Listener) {
     this.listeners.push(fn);
   }
@@ -102,6 +124,10 @@ class FormStore implements FormInstance {
 
       onFinished(this.getFieldsValue());
     };
+  }
+
+  public getFieldValue(name: string): StoreValue {
+    return this.fieldsStateMap[name].value;
   }
 }
 

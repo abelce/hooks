@@ -1,7 +1,7 @@
 import { autobind } from 'core-decorators';
 import { ChangeEvent, RefObject } from 'react';
 import FormState from '.';
-import { Rule, RuleObject } from './type';
+import { Rule, RuleObject, RuleValidateError } from './type';
 import { validateRules } from './utils.ts/validateUtils';
 
 export type FormFielOptions = {
@@ -31,6 +31,8 @@ class FormField {
 
   public readonly initValue: any = undefined;
 
+  public errors: RuleValidateError[] | null = null;
+
   constructor(
     readonly formState: FormState,
     public readonly name: string,
@@ -53,8 +55,20 @@ class FormField {
     return rules;
   }
 
-  private validate() {
-    validateRules(this.name, this.value, this.getRules());
+  public async validate(shouldFlush?: boolean) {
+    return validateRules(this.name, this.value, this.getRules())
+      .then((errors) => {
+        if (errors.length) {
+          this.errors = errors;
+        } else {
+          this.errors = null;
+        }
+      })
+      .finally(() => {
+        if (shouldFlush) {
+          this.formState.flush();
+        }
+      });
   }
 
   // <! ------ public method ----------- >
@@ -75,7 +89,7 @@ class FormField {
       this._value = value;
       this.updateIsDirty(oldValue, value);
     }
-    this.validate();
+    this.validate(true);
     this.formState.flush();
   }
 }

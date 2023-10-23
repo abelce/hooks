@@ -1,12 +1,14 @@
 import useForm from '..';
 
 export default () => {
-  const { register } = useForm({
+  const { register, errors } = useForm({
     // disabled: true,
     initValues: {
       name: 'wenqin',
     },
   });
+
+  console.log(errors);
   return (
     <div>
       <form>

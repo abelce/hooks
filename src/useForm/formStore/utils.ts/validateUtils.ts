@@ -1,28 +1,43 @@
-import AsyncValidatorSchema, { ValidateError } from 'async-validator';
+import AsyncValidatorSchema from 'async-validator';
 
-import { RuleObject, StoreValue } from '../type';
+import { RuleObject, RuleValidateError, StoreValue } from '../type';
 
-const validateRule = async (
+const validateRule = (
   name: string,
   value: StoreValue,
   rule: RuleObject,
-) => {
+): Promise<RuleValidateError[] | null> => {
   const validator = new AsyncValidatorSchema({ [name]: rule } as any);
 
-  try {
-    await validator.validate(
+  return new Promise((resolve) => {
+    validator.validate(
       { [name]: value },
-      (errors: ValidateError[] | null, values: StoreValue) => {
-        console.log(errors, values);
+      (errors: RuleValidateError[] | null) => {
+        resolve(errors);
       },
     );
-  } catch (errors: unknown) {}
+  });
 };
 
-export const validateRules = (
+export const validateRules = async (
   name: string,
   value: StoreValue,
   rules: RuleObject[],
-) => {
-  rules.map((rule) => validateRule(name, value, rule));
+): Promise<RuleValidateError[]> => {
+  const rulePromises = await Promise.all(
+    rules.map(async (rule) => await validateRule(name, value, rule)),
+  );
+
+  return rulePromises.reduce(
+    (
+      allErrors: RuleValidateError[],
+      ruleErrors: RuleValidateError[] | null,
+    ) => {
+      if (ruleErrors) {
+        return [...allErrors, ...ruleErrors];
+      }
+      return allErrors;
+    },
+    [] as RuleValidateError[],
+  );
 };
