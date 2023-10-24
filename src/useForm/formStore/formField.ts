@@ -1,37 +1,42 @@
 import { autobind } from 'core-decorators';
 import { ChangeEvent, RefObject } from 'react';
 import FormState from '.';
-import { Rule, RuleObject, RuleValidateError } from './type';
+import {
+  FormFieldInstance,
+  FormFielOptions,
+  RuleError,
+  RuleObject,
+  StoreValue,
+} from './type';
 import { validateRules } from './utils.ts/validateUtils';
-
-export type FormFielOptions = {
-  disabled?: boolean;
-  // validation rules
-  rules?: Rule[];
-};
 
 export type FieldRule = {
   required?: boolean;
 };
 
 @autobind
-class FormField {
+class FormField implements FormFieldInstance {
   public isDirty: boolean = false;
 
   public ref: RefObject<HTMLElement> = { current: null };
 
   public get disabled() {
-    return this.formState.options?.disabled || this.options?.disabled;
+    return (
+      (this.formState.options?.disabled || this.options?.disabled) ?? false
+    );
   }
 
   private _value: any;
+
   public get value() {
     return this._value ?? this.initValue;
   }
 
   public readonly initValue: any = undefined;
 
-  public errors: RuleValidateError[] | null = null;
+  public isValidating: boolean = false;
+
+  public errors: string[] = [];
 
   constructor(
     readonly formState: FormState,
@@ -51,20 +56,24 @@ class FormField {
   }
 
   private getRules(): RuleObject[] {
-    const rules = this.options?.rules || [];
-    return rules;
+    return this.options?.rules || [];
   }
 
   public async validate(shouldFlush?: boolean) {
+    this.isValidating = true;
+    let nextErrors: string[] = [];
     return validateRules(this.name, this.value, this.getRules())
-      .then((errors) => {
-        if (errors.length) {
-          this.errors = errors;
-        } else {
-          this.errors = null;
+      .catch((ruleErrors) => ruleErrors)
+      .then((ruleErrors: RuleError[]) => {
+        if (ruleErrors.length) {
+          ruleErrors.forEach(({ errors }) => {
+            nextErrors.push(...errors);
+          });
         }
       })
       .finally(() => {
+        this.isValidating = false;
+        this.errors = nextErrors;
         if (shouldFlush) {
           this.formState.flush();
         }
@@ -91,6 +100,24 @@ class FormField {
     }
     this.validate(true);
     this.formState.flush();
+  }
+
+  /**
+   * reset field state
+   */
+  public resetField() {
+    this._value = this.formState.options.initValues?.[this.name];
+    this.errors = [];
+    this.isValidating = false;
+    this.isDirty = false;
+  }
+
+  /**
+   * set the value to nextValue
+   * @param nextValue
+   */
+  public setValue(nextValue: StoreValue) {
+    this._value = nextValue;
   }
 }
 

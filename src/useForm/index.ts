@@ -4,10 +4,10 @@
  * @returns
  */
 
-import { useMemo, useRef, useState } from 'react';
-import { useUpdateEffect } from '..';
+import { useEffect, useMemo, useRef } from 'react';
+import { useUpdate } from '..';
 import FormStore from './formStore';
-import FormField from './formStore/formField';
+import { FormInstance } from './formStore/type';
 
 export interface UseFormOptions {
   initValues?: Record<string, any>;
@@ -15,18 +15,19 @@ export interface UseFormOptions {
 }
 
 const useForm = (options: UseFormOptions = {}) => {
-  const [formState, updateFormState] = useState<Record<string, FormField>>({});
-  console.log(formState);
-  const _formStateRef = useRef<FormStore>();
+  const update = useUpdate();
+  const _formStateRef = useRef<FormInstance>();
 
   useMemo(() => {
     _formStateRef.current = new FormStore(options);
-    _formStateRef.current.sub((formState) => {
-      updateFormState({ ...formState });
+    _formStateRef.current.sub(() => {
+      update();
     });
   }, []);
 
-  useUpdateEffect(() => {}, []);
+  useEffect(() => {
+    update();
+  }, []);
 
   return _formStateRef.current;
 };

@@ -1,7 +1,9 @@
 import { ValidateError } from 'async-validator';
-import { ReactElement } from 'react';
+import { ChangeEvent, ReactElement, RefObject } from 'react';
 
 export type StoreValue = any;
+
+export type Listener = (fieldsMap: Record<string, FormFieldInstance>) => void;
 
 export interface FormInstance {
   // Origin Form API
@@ -18,13 +20,35 @@ export interface FormInstance {
   // isFieldTouched: (name: NamePath) => boolean;
   // isFieldValidating: (name: NamePath) => boolean;
   // isFieldsValidating: (nameList?: NamePath[]) => boolean;
-  // resetFields: (fields?: NamePath[]) => void;
+  resetFields: (names?: string[]) => void;
   // setFields: (fields: FieldData[]) => void;
   // setFieldValue: (name: NamePath, value: any) => void;
-  // setFieldsValue: (values: RecursivePartial<Values>) => void;
-  // validateFields: ValidateFields<Values>;
+  setFieldsValue: (values: Record<string, StoreValue>) => void;
+  validateFields: (names?: string[]) => Promise<Record<string, StoreValue>>;
   // // New API
   // submit: () => void;
+  sub: (fn: Listener) => void;
+}
+
+export type FormFielOptions = {
+  disabled?: boolean;
+  // validation rules
+  rules?: Rule[];
+};
+
+export interface FormFieldInstance {
+  name: string;
+  isDirty: boolean;
+  ref: RefObject<HTMLElement>;
+  disabled: boolean;
+  value: StoreValue;
+  isValidating: boolean;
+  errors: string[];
+  validate: (shouldFlush?: boolean) => Promise<void>;
+  updateOptions: (options: FormFielOptions) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  resetField: () => void;
+  setValue: (value: StoreValue) => void;
 }
 
 export type RuleType =
@@ -85,3 +109,8 @@ interface BaseRule {
 export type Aggregation = BaseRule;
 
 export type RuleValidateError = ValidateError;
+
+export type RuleError = {
+  errors: string[];
+  rule: RuleObject;
+};

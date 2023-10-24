@@ -1,9 +1,13 @@
 import { autobind } from 'core-decorators';
 import { FormEvent } from 'react';
-import FormField, { FormFielOptions } from './formField';
-import { FormInstance, RuleValidateError, StoreValue } from './type';
-
-type Listener = (fieldsStateMap: Record<string, FormField>) => void;
+import FormField from './formField';
+import {
+  FormFieldInstance,
+  FormFielOptions,
+  FormInstance,
+  Listener,
+  StoreValue,
+} from './type';
 
 export type FormStateOptions = {
   initValues?: Record<string, any>;
@@ -14,18 +18,27 @@ export type FormStateOptions = {
 class FormStore implements FormInstance {
   private listeners: Listener[] = [];
 
-  private fieldsStateMap: Record<string, FormField> = {};
+  private fieldsMap: Record<string, FormFieldInstance> = {};
 
-  public get errors() {
-    return Object.values(this.fieldsStateMap).reduce(
-      (errors: RuleValidateError[], fieldState) => {
-        if (fieldState.errors?.length) {
-          return [...errors, ...fieldState.errors];
+  public get errors(): Record<string, string[]> | null {
+    let result: Record<string, string[]> | null = null;
+    Object.values(this.fieldsMap).forEach((field) => {
+      if (field.errors.length) {
+        if (!result) {
+          result = {
+            [field.name]: field.errors,
+          };
+        } else {
+          result[field.name] = field.errors;
         }
-        return errors;
-      },
-      [],
-    );
+      }
+    });
+
+    return result;
+  }
+
+  public get isDirty() {
+    return Object.values(this.fieldsMap).some((field) => field.isDirty);
   }
 
   constructor(public options: FormStateOptions = {}) {}
@@ -38,8 +51,7 @@ class FormStore implements FormInstance {
   }
 
   private createFieldState(name: string, options: FormFielOptions) {
-    this.fieldsStateMap[name] = new FormField(this, name, options);
-    return this.fieldsStateMap[name];
+    return (this.fieldsMap[name] = new FormField(this, name, options));
   }
 
   /**
@@ -48,16 +60,18 @@ class FormStore implements FormInstance {
    * @param partialFieldState
    */
   private updateFieldState(name: string, options: FormFielOptions) {
-    this.fieldsStateMap[name].updateOptions(options);
-    return this.fieldsStateMap[name];
+    this.fieldsMap[name].updateOptions(options);
+    return this.fieldsMap[name];
   }
 
-  public async validate() {
-    await Promise.all(
-      Object.values(this.fieldsStateMap).map((fieldState) =>
-        fieldState.validate(),
-      ),
-    );
+  public async validate(names?: string[]) {
+    const fields = Array.isArray(names)
+      ? Object.values(this.fieldsMap).filter((field) =>
+          names.includes(field.name),
+        )
+      : Object.values(this.fieldsMap);
+    await Promise.all(fields.map((field) => field.validate()));
+
     this.flush();
   }
 
@@ -66,7 +80,7 @@ class FormStore implements FormInstance {
    */
   public flush() {
     this.listeners.forEach((l) => {
-      l(this.fieldsStateMap);
+      l(this.fieldsMap);
     });
   }
 
@@ -81,7 +95,7 @@ class FormStore implements FormInstance {
    * @returns
    */
   public register(name: string, options: FormFielOptions) {
-    let field = this.fieldsStateMap[name];
+    let field = this.fieldsMap[name];
     if (field) {
       field = this.updateFieldState(name, options);
     } else {
@@ -101,33 +115,83 @@ class FormStore implements FormInstance {
    * return all field value
    * @returns
    */
-  public getFieldsValue(): Record<string, any> {
-    return Object.entries(this.fieldsStateMap).reduce(
-      (values: Record<string, any>, [name, state]) => {
-        values[name] = state.value;
-        return values;
-      },
-      {},
-    );
+  public getFieldsValue(names?: string[]): Record<string, StoreValue> {
+    const fields = Array.isArray(names)
+      ? Object.entries(this.fieldsMap).filter(([name]) => names.includes(name))
+      : Object.entries(this.fieldsMap);
+    return fields.reduce((values: Record<string, any>, [name, state]) => {
+      values[name] = state.value;
+      return values;
+    }, {});
+  }
+  /**
+   * get field value
+   * @param name
+   * @returns
+   */
+  public getFieldValue(name: string): StoreValue {
+    return this.fieldsMap[name]?.value;
   }
   /**
    * @param handleSubmit
    */
-  public handleSubmit(
-    onFinished: (values: Record<string, any>) => void,
-    onFailed: (errors: any, values: Record<string, any>) => void,
+  public submit(
+    onFinish: (values: Record<string, any>) => void,
+    onFinishFailed: (errors: any, values: Record<string, any>) => void,
   ) {
-    return (e: FormEvent) => {
+    return async (e: FormEvent) => {
       e.preventDefault?.();
 
-      console.log(onFinished, onFailed);
+      await this.validate();
 
-      onFinished(this.getFieldsValue());
+      const _values = this.getFieldsValue();
+      if (this.errors?.length) {
+        onFinishFailed?.(this.errors, _values);
+        return;
+      }
+      onFinish?.(_values);
     };
   }
 
-  public getFieldValue(name: string): StoreValue {
-    return this.fieldsStateMap[name].value;
+  /**
+   * make the page scroll to the specific field
+   * @param name
+   */
+  public scrollField(name: string) {
+    const ele = this.fieldsMap[name]?.ref?.current;
+    if (ele) {
+      ele.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  /**
+   * validate fields
+   * @param names
+   */
+  public async validateFields(names?: string[]) {
+    await this.validate(names);
+    if (this.errors) {
+      return Promise.reject({
+        values: this.getFieldsValue(names),
+        errrors: this.errors,
+      });
+    }
+    return this.getFieldsValue(names);
+  }
+
+  public resetFields(names?: string[]): void {
+    const resetNames = Array.isArray(names)
+      ? names
+      : Object.keys(this.fieldsMap);
+    resetNames.forEach((name) => {
+      this.fieldsMap[name]?.resetField();
+    });
+  }
+
+  public setFieldsValue(values: Record<string, StoreValue>) {
+    for (const [name, value] of Object.entries(values)) {
+      this.fieldsMap[name]?.setValue(value);
+    }
   }
 }
 
