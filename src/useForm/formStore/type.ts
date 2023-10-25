@@ -1,5 +1,5 @@
 import { RuleType, ValidateError } from 'async-validator';
-import { ChangeEvent, ReactElement, RefObject } from 'react';
+import { ChangeEvent, FormEvent, ReactElement } from 'react';
 
 export type StoreValue = any;
 
@@ -15,6 +15,14 @@ export type FormInstanceOptions = {
 export interface FormInstance {
   name?: string;
   options?: FormInstanceOptions;
+  errors: Record<string, string[]> | null;
+  isDirty: boolean;
+  register: (
+    name: string,
+    options: FormFielOptions,
+  ) => FieldInfo & {
+    onChange: FormFieldInstance['onChange'];
+  };
   // Origin Form API
   // getFieldValue: (name: NamePath) => StoreValue;
   getFieldValue: (name: string) => StoreValue;
@@ -36,9 +44,14 @@ export interface FormInstance {
   // setFields: (fields: FieldData[]) => void;
   // setFieldValue: (name: NamePath, value: any) => void;
   setFieldsValue: (values: Record<string, StoreValue>) => void;
+  scrollField: (name: string) => void;
   validateFields: (nameList?: string[]) => Promise<Record<string, StoreValue>>;
   // // New API
-  // submit: () => void;
+  submit: (
+    onFinish: (values: Record<string, any>) => void,
+    onFinishFailed?: (errors: any, values: Record<string, any>) => void,
+  ) => (e: FormEvent<HTMLFormElement>) => Promise<void>;
+
   sub: (fn: Listener) => void;
   flush: () => void;
 }
@@ -58,7 +71,7 @@ export type FieldInfo = {
   id: string;
   name: string;
   isDirty: boolean;
-  ref: RefObject<HTMLElement>;
+  ref: { current: any };
   disabled: boolean;
   value: StoreValue;
   isValidating: boolean;

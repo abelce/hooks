@@ -1,5 +1,5 @@
 import { autobind } from 'core-decorators';
-import { ChangeEvent, RefObject } from 'react';
+import { ChangeEvent } from 'react';
 import {
   FormFieldInstance,
   FormFielOptions,
@@ -16,7 +16,7 @@ export type FieldRule = {
 
 @autobind
 class FormField implements FormFieldInstance {
-  public ref: RefObject<HTMLElement> = { current: null };
+  public ref: { current: any } = { current: null };
 
   public get id() {
     return [this.formState.name, this.name].filter(Boolean).join('_');
@@ -49,13 +49,19 @@ class FormField implements FormFieldInstance {
     this.initValue = formState.options?.initValues?.[name];
   }
 
+  private udpateValue(nextValue: StoreValue) {
+    const oldValue = this._value;
+    this._value = nextValue;
+    this.updateIsDirty(oldValue, this._value);
+  }
+
   /**
    * update isDirty
    * @param oldValue
-   * @param newValue
+   * @param nextValue
    */
-  private updateIsDirty(oldValue: any, newValue: any) {
-    this.isDirty = oldValue === newValue;
+  private updateIsDirty(oldValue: any, nextValue: any) {
+    this.isDirty = oldValue !== nextValue;
   }
 
   private getRules(): RuleObject[] {
@@ -97,9 +103,7 @@ class FormField implements FormFieldInstance {
     const name = target.name;
     if (name === this.name) {
       const value = target.value;
-      const oldValue = this._value;
-      this._value = value;
-      this.updateIsDirty(oldValue, value);
+      this.udpateValue(value);
     }
     this.validate(true);
     this.formState.flush();
@@ -120,7 +124,7 @@ class FormField implements FormFieldInstance {
    * @param nextValue
    */
   public setValue(nextValue: StoreValue) {
-    this._value = nextValue;
+    this.udpateValue(nextValue);
   }
 }
 

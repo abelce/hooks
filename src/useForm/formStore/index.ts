@@ -113,11 +113,7 @@ class FormStore implements FormInstance {
     }
 
     return {
-      name,
-      id: field?.id,
-      value: field?.value,
-      disabled: field?.disabled,
-      ref: field?.ref,
+      ...(this.getField(name) as FieldInfo),
       onChange: field.onChange,
     };
   }
@@ -153,9 +149,9 @@ class FormStore implements FormInstance {
    */
   public submit(
     onFinish: (values: Record<string, any>) => void,
-    onFinishFailed: (errors: any, values: Record<string, any>) => void,
+    onFinishFailed?: (errors: any, values: Record<string, any>) => void,
   ) {
-    return async (e: FormEvent) => {
+    return async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault?.();
 
       await this.validate();
@@ -176,6 +172,7 @@ class FormStore implements FormInstance {
   public scrollField(name: string) {
     const ele = this.fieldsMap[name]?.ref?.current;
     if (ele) {
+      console.log(ele);
       ele.scrollIntoView({ behavior: 'smooth' });
     }
   }
@@ -190,7 +187,7 @@ class FormStore implements FormInstance {
       return Promise.reject({
         values: this.getFieldsValue(nameList),
         errrors: this.errors,
-      });
+      }).catch((e) => e);
     }
     return this.getFieldsValue(nameList);
   }
