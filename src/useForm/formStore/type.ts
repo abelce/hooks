@@ -1,34 +1,52 @@
-import { ValidateError } from 'async-validator';
+import { RuleType, ValidateError } from 'async-validator';
 import { ChangeEvent, ReactElement, RefObject } from 'react';
 
 export type StoreValue = any;
 
 export type Listener = (fieldsMap: Record<string, FormFieldInstance>) => void;
 
+export type FormInstanceOptions = {
+  // form name，if not pass, will gen auto
+  name?: string;
+  initValues?: Record<string, any>;
+  disabled?: boolean;
+};
+
 export interface FormInstance {
+  name?: string;
+  options?: FormInstanceOptions;
   // Origin Form API
   // getFieldValue: (name: NamePath) => StoreValue;
   getFieldValue: (name: string) => StoreValue;
   // getFieldsValue: (() => Values) &
   //   ((nameList: NamePath[] | true, filterFunc?: FilterFunc) => any) &
   //   ((config: GetFieldsValueConfig) => any);
-  // getFieldError: (name: NamePath) => string[];
-  // getFieldsError: (nameList?: NamePath[]) => FieldError[];
+  getFieldError: (name: string) => string[];
+  getFieldsError: (nameList?: string[]) => FieldError[];
   // getFieldWarning: (name: NamePath) => string[];
   // isFieldsTouched: ((nameList?: NamePath[], allFieldsTouched?: boolean) => boolean) &
   //   ((allFieldsTouched?: boolean) => boolean);
   // isFieldTouched: (name: NamePath) => boolean;
   // isFieldValidating: (name: NamePath) => boolean;
   // isFieldsValidating: (nameList?: NamePath[]) => boolean;
-  resetFields: (names?: string[]) => void;
+  // get field info
+  getField: (name: string) => FieldInfo | undefined;
+  getFields: (nameList?: string[]) => FieldInfo[];
+  resetFields: (nameList?: string[]) => void;
   // setFields: (fields: FieldData[]) => void;
   // setFieldValue: (name: NamePath, value: any) => void;
   setFieldsValue: (values: Record<string, StoreValue>) => void;
-  validateFields: (names?: string[]) => Promise<Record<string, StoreValue>>;
+  validateFields: (nameList?: string[]) => Promise<Record<string, StoreValue>>;
   // // New API
   // submit: () => void;
   sub: (fn: Listener) => void;
+  flush: () => void;
 }
+
+export type FieldError = {
+  name: string;
+  errors: string[];
+};
 
 export type FormFielOptions = {
   disabled?: boolean;
@@ -36,7 +54,8 @@ export type FormFielOptions = {
   rules?: Rule[];
 };
 
-export interface FormFieldInstance {
+export type FieldInfo = {
+  id: string;
   name: string;
   isDirty: boolean;
   ref: RefObject<HTMLElement>;
@@ -44,6 +63,9 @@ export interface FormFieldInstance {
   value: StoreValue;
   isValidating: boolean;
   errors: string[];
+};
+
+export interface FormFieldInstance extends FieldInfo {
   validate: (shouldFlush?: boolean) => Promise<void>;
   updateOptions: (options: FormFielOptions) => void;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -51,20 +73,20 @@ export interface FormFieldInstance {
   setValue: (value: StoreValue) => void;
 }
 
-export type RuleType =
-  | 'string'
-  | 'number'
-  | 'boolean'
-  | 'method'
-  | 'regexp'
-  | 'integer'
-  | 'float'
-  | 'object'
-  | 'enum'
-  | 'date'
-  | 'url'
-  | 'hex'
-  | 'email';
+// export type RuleType =
+//   | 'string'
+//   | 'number'
+//   | 'boolean'
+//   | 'method'
+//   | 'regexp'
+//   | 'integer'
+//   | 'float'
+//   | 'object'
+//   | 'enum'
+//   | 'date'
+//   | 'url'
+//   | 'hex'
+//   | 'email';
 
 type AggregationRule = BaseRule & Partial<ValidatorRule>;
 
@@ -94,8 +116,8 @@ export interface ValidatorRule {
 
 interface BaseRule {
   // warningOnly?: boolean;
-  // enum?: StoreValue[];
-  //   len?: number;
+  enum?: StoreValue[];
+  len?: number;
   max?: number;
   min?: number;
   maxLength?: number;

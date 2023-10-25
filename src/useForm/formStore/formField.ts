@@ -1,9 +1,9 @@
 import { autobind } from 'core-decorators';
 import { ChangeEvent, RefObject } from 'react';
-import FormState from '.';
 import {
   FormFieldInstance,
   FormFielOptions,
+  FormInstance,
   RuleError,
   RuleObject,
   StoreValue,
@@ -16,14 +16,10 @@ export type FieldRule = {
 
 @autobind
 class FormField implements FormFieldInstance {
-  public isDirty: boolean = false;
-
   public ref: RefObject<HTMLElement> = { current: null };
 
-  public get disabled() {
-    return (
-      (this.formState.options?.disabled || this.options?.disabled) ?? false
-    );
+  public get id() {
+    return [this.formState.name, this.name].filter(Boolean).join('_');
   }
 
   private _value: any;
@@ -34,16 +30,23 @@ class FormField implements FormFieldInstance {
 
   public readonly initValue: any = undefined;
 
+  public get disabled() {
+    return (
+      (this.formState.options?.disabled || this.options?.disabled) ?? false
+    );
+  }
+  public isDirty: boolean = false;
+
   public isValidating: boolean = false;
 
   public errors: string[] = [];
 
   constructor(
-    readonly formState: FormState,
+    readonly formState: FormInstance,
     public readonly name: string,
     public options?: FormFielOptions,
   ) {
-    this.initValue = formState.options.initValues?.[name];
+    this.initValue = formState.options?.initValues?.[name];
   }
 
   /**
@@ -106,7 +109,7 @@ class FormField implements FormFieldInstance {
    * reset field state
    */
   public resetField() {
-    this._value = this.formState.options.initValues?.[this.name];
+    this._value = this.formState.options?.initValues?.[this.name];
     this.errors = [];
     this.isValidating = false;
     this.isDirty = false;
