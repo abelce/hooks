@@ -43,7 +43,8 @@ describe('Test useForm', () => {
     // scrollField
     result.current?.scrollField('email');
     // getFields
-
+    const fields = result.current?.getFields();
+    expect(fields?.length).toBe(2);
     // resetFields
     act(() => {
       result.current?.resetFields();
