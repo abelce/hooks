@@ -157,7 +157,7 @@ class FormStore implements FormInstance {
       await this.validate();
 
       const _values = this.getFieldsValue();
-      if (this.errors?.length) {
+      if (this.errors) {
         onFinishFailed?.(this.errors, _values);
         return;
       }

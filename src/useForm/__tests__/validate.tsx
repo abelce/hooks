@@ -51,5 +51,15 @@ describe('Test useForm', () => {
     expect(result.current?.errors?.['email']).toEqual([
       'Incorrect email format',
     ]);
+    // getFieldError
+    expect(result.current?.getFieldError('email')).toEqual([
+      'Incorrect email format',
+    ]);
+    // getFieldsError
+    expect(result.current?.getFieldsError().length).toEqual(2);
+    expect(result.current?.getFieldsError()).toEqual([
+      { name: 'email', errors: ['Incorrect email format'] },
+      { name: 'password', errors: ['Password is required'] },
+    ]);
   });
 });

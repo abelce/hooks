@@ -6,9 +6,9 @@ import './style.scss';
 export default ({ form }: { form: FormInstance }) => {
   const { register, errors, submit, validateFields } = form;
 
-  const onSubmit = (values: any) => {
-    console.log(values);
-  };
+  const onFinish = () => {};
+
+  const onFinishFailed = () => {};
 
   return (
     <div>
@@ -16,7 +16,7 @@ export default ({ form }: { form: FormInstance }) => {
         className={classnames('use-form', {
           ['use-form-error']: !!errors,
         })}
-        onSubmit={submit(onSubmit)}
+        onSubmit={submit(onFinish, onFinishFailed)}
       >
         <div
           className={classnames('use-form-item', {
@@ -68,7 +68,7 @@ export default ({ form }: { form: FormInstance }) => {
           </div>
         </div>
 
-        <input type="submit"></input>
+        <input type="submit" id="submit"></input>
       </form>
 
       <div>
