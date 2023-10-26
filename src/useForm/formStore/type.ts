@@ -8,7 +8,7 @@ export type Listener = (fieldsMap: Record<string, FormFieldInstance>) => void;
 export type FormInstanceOptions = {
   // form name，if not pass, will gen auto
   name?: string;
-  initValues?: Record<string, any>;
+  initValues?: Record<string, StoreValue>;
   disabled?: boolean;
 };
 
@@ -35,8 +35,8 @@ export interface FormInstance {
   // isFieldsTouched: ((nameList?: NamePath[], allFieldsTouched?: boolean) => boolean) &
   //   ((allFieldsTouched?: boolean) => boolean);
   // isFieldTouched: (name: NamePath) => boolean;
-  // isFieldValidating: (name: NamePath) => boolean;
-  // isFieldsValidating: (nameList?: NamePath[]) => boolean;
+  isFieldValidating: (name: string) => boolean;
+  isFieldsValidating: (nameList?: string[]) => boolean;
   // get field info
   getField: (name: string) => FieldInfo | undefined;
   getFields: (nameList?: string[]) => FieldInfo[];
@@ -48,8 +48,8 @@ export interface FormInstance {
   validateFields: (nameList?: string[]) => Promise<Record<string, StoreValue>>;
   // // New API
   submit: (
-    onFinish: (values: Record<string, any>) => void,
-    onFinishFailed?: (errors: any, values: Record<string, any>) => void,
+    onFinish: (values: Record<string, StoreValue>) => void,
+    onFinishFailed?: (errors: any, values: Record<string, StoreValue>) => void,
   ) => (e: FormEvent<HTMLFormElement>) => Promise<void>;
 
   sub: (fn: Listener) => void;
@@ -65,6 +65,7 @@ export type FormFielOptions = {
   disabled?: boolean;
   // validation rules
   rules?: Rule[];
+  valuePropName?: string;
 };
 
 export type FieldInfo = {
@@ -76,14 +77,16 @@ export type FieldInfo = {
   value: StoreValue;
   isValidating: boolean;
   errors: string[];
-};
+} & Record<string, any>;
 
 export interface FormFieldInstance extends FieldInfo {
+  valuePropName: string;
   validate: (shouldFlush?: boolean) => Promise<void>;
   updateOptions: (options: FormFielOptions) => void;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   resetField: () => void;
   setValue: (value: StoreValue) => void;
+  getValue: () => StoreValue;
 }
 
 // export type RuleType =

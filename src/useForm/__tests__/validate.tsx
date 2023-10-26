@@ -62,4 +62,21 @@ describe('Test useForm', () => {
       { name: 'password', errors: ['Password is required'] },
     ]);
   });
+
+  it('should isFieldsValidating return true', async () => {
+    const { result } = renderHook(() => useForm());
+
+    render(<Comp form={result.current as FormInstance} />);
+
+    expect(result.current?.isFieldValidating('email')).toBe(false);
+    act(async () => {
+      result.current?.validateFields();
+    });
+    expect(result.current?.isFieldValidating('email')).toBe(true);
+    expect(result.current?.isFieldsValidating()).toBe(true);
+    await act(async () => {
+      await sleep(10);
+    });
+    expect(result.current?.isFieldsValidating()).toBe(false);
+  });
 });

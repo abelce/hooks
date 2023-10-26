@@ -114,18 +114,19 @@ class FormStore implements FormInstance {
 
     return {
       ...(this.getField(name) as FieldInfo),
+      [field.valuePropName]: field?.getValue(),
       onChange: field.onChange,
     };
   }
-  // field value
 
+  // field value
   /**
    * return all field value
    * @returns
    */
   public getFieldsValue(nameList?: string[]): Record<string, StoreValue> {
     const names = this.getFieldNameList(nameList);
-    return names.reduce((values: Record<string, any>, name) => {
+    return names.reduce((values: Record<string, StoreValue>, name) => {
       values[name] = this.fieldsMap[name].value;
       return values;
     }, {});
@@ -148,8 +149,8 @@ class FormStore implements FormInstance {
    * @param handleSubmit
    */
   public submit(
-    onFinish: (values: Record<string, any>) => void,
-    onFinishFailed?: (errors: any, values: Record<string, any>) => void,
+    onFinish: (values: Record<string, StoreValue>) => void,
+    onFinishFailed?: (errors: any, values: Record<string, StoreValue>) => void,
   ) {
     return async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault?.();
@@ -163,6 +164,19 @@ class FormStore implements FormInstance {
       }
       onFinish?.(_values);
     };
+  }
+
+  public isFieldValidating(name: string) {
+    if (this.fieldsMap[name]) {
+      return this.fieldsMap[name].isValidating;
+    }
+    return false;
+  }
+
+  public isFieldsValidating(nameList?: string[]) {
+    return this.getFieldNameList(nameList).some(
+      (name) => this.fieldsMap[name].isValidating,
+    );
   }
 
   /**
@@ -201,7 +215,7 @@ class FormStore implements FormInstance {
       isDirty: field?.isDirty,
       ref: field?.ref,
       disabled: field?.disabled,
-      value: field?.value,
+      value: field?.getValue(),
       isValidating: field?.isValidating,
       errors: field?.errors,
     };
