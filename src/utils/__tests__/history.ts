@@ -50,7 +50,10 @@ describe('test history', () => {
     history.replace({
       pathname: '/product/detail',
     });
+    history.push({
+      pathname: '/order',
+    });
     // test go
-    history.go(1);
+    history.go(-2);
   });
 });
