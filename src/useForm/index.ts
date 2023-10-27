@@ -7,10 +7,11 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useUpdate } from '..';
 import FormStore from './formStore';
-import { FormInstance } from './formStore/type';
+import { FormInstance, StoreValue } from './formStore/type';
 
 export interface UseFormOptions {
-  initValues?: Record<string, any>;
+  name?: string;
+  initValues?: Record<string, StoreValue>;
   disabled?: boolean;
 }
 

@@ -1,3 +1,4 @@
+import isString from '@/utils/isString';
 import { autobind } from 'core-decorators';
 import { ChangeEvent } from 'react';
 import {
@@ -18,17 +19,26 @@ export type FieldRule = {
 class FormField implements FormFieldInstance {
   public ref: { current: any } = { current: null };
 
+  /**
+   * id = `${form.name}_${this.name}`
+   */
   public get id() {
     return [this.formState.name, this.name].filter(Boolean).join('_');
   }
 
-  private _value: any;
+  private _value: StoreValue;
 
-  public get value() {
-    return this._value ?? this.initValue;
+  private _valuePropName: string = 'value';
+
+  public get valuePropName() {
+    return this._valuePropName;
   }
 
-  public readonly initValue: any = undefined;
+  public get value() {
+    return this._value;
+  }
+
+  public readonly initValue: StoreValue = undefined;
 
   public get disabled() {
     return (
@@ -47,6 +57,10 @@ class FormField implements FormFieldInstance {
     public options?: FormFielOptions,
   ) {
     this.initValue = formState.options?.initValues?.[name];
+    this._value = this.initValue;
+    if (this.options?.valuePropName && isString(this.options?.valuePropName)) {
+      this._valuePropName = this.options?.valuePropName;
+    }
   }
 
   private udpateValue(nextValue: StoreValue) {
@@ -60,7 +74,7 @@ class FormField implements FormFieldInstance {
    * @param oldValue
    * @param nextValue
    */
-  private updateIsDirty(oldValue: any, nextValue: any) {
+  private updateIsDirty(oldValue: StoreValue, nextValue: StoreValue) {
     this.isDirty = oldValue !== nextValue;
   }
 
@@ -71,7 +85,7 @@ class FormField implements FormFieldInstance {
   public async validate(shouldFlush?: boolean) {
     this.isValidating = true;
     let nextErrors: string[] = [];
-    return validateRules(this.name, this.value, this.getRules())
+    return validateRules(this.name, this._value, this.getRules())
       .catch((ruleErrors) => ruleErrors)
       .then((ruleErrors: RuleError[]) => {
         if (ruleErrors.length) {
@@ -98,13 +112,22 @@ class FormField implements FormFieldInstance {
     this.options = options;
   }
 
-  public onChange(e: ChangeEvent<HTMLInputElement>) {
-    const target = e.target;
-    const name = target.name;
-    if (name === this.name) {
-      const value = target.value;
-      this.udpateValue(value);
-    }
+  public onChange<T extends ChangeEvent<HTMLInputElement>>(e: T) {
+    const getNextValue = (): StoreValue => {
+      /**
+       * if e is instance of event, get the value from e.target
+       * otherwise return e;
+       */
+      if (e instanceof Event) {
+        const target = e.target;
+        // const name = target.name;
+
+        return target[this._valuePropName as keyof typeof target];
+      }
+      return e;
+    };
+
+    this.udpateValue(getNextValue());
     this.validate(true);
     this.formState.flush();
   }
@@ -125,6 +148,10 @@ class FormField implements FormFieldInstance {
    */
   public setValue(nextValue: StoreValue) {
     this.udpateValue(nextValue);
+  }
+
+  public getValue() {
+    return this.value;
   }
 }
 
