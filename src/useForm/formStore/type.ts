@@ -12,41 +12,32 @@ export type FormInstanceOptions = {
   disabled?: boolean;
 };
 
+export interface RegisterReturn
+  extends Pick<FieldInfo, 'id' | 'name' | 'ref' | 'disabled'> {
+  onChange: FormFieldInstance['onChange'];
+}
+
 export interface FormInstance {
   name?: string;
   options?: FormInstanceOptions;
   errors: Record<string, string[]> | null;
   isDirty: boolean;
-  register: (
-    name: string,
-    options: FormFielOptions,
-  ) => FieldInfo & {
-    onChange: FormFieldInstance['onChange'];
-  };
-  // Origin Form API
-  // getFieldValue: (name: NamePath) => StoreValue;
+  // methods
+  register: (name: string, options: FormFielOptions) => RegisterReturn;
   getFieldValue: (name: string) => StoreValue;
-  // getFieldsValue: (() => Values) &
-  //   ((nameList: NamePath[] | true, filterFunc?: FilterFunc) => any) &
-  //   ((config: GetFieldsValueConfig) => any);
   getFieldError: (name: string) => string[];
   getFieldsError: (nameList?: string[]) => FieldError[];
-  // getFieldWarning: (name: NamePath) => string[];
-  // isFieldsTouched: ((nameList?: NamePath[], allFieldsTouched?: boolean) => boolean) &
-  //   ((allFieldsTouched?: boolean) => boolean);
-  // isFieldTouched: (name: NamePath) => boolean;
+  // validate
+  validateFields: (nameList?: string[]) => Promise<Record<string, StoreValue>>;
   isFieldValidating: (name: string) => boolean;
   isFieldsValidating: (nameList?: string[]) => boolean;
   // get field info
   getField: (name: string) => FieldInfo | undefined;
   getFields: (nameList?: string[]) => FieldInfo[];
   resetFields: (nameList?: string[]) => void;
-  // setFields: (fields: FieldData[]) => void;
-  // setFieldValue: (name: NamePath, value: any) => void;
   setFieldsValue: (values: Record<string, StoreValue>) => void;
   scrollField: (name: string) => void;
-  validateFields: (nameList?: string[]) => Promise<Record<string, StoreValue>>;
-  // // New API
+
   submit: (
     onFinish: (values: Record<string, StoreValue>) => void,
     onFinishFailed?: (errors: any, values: Record<string, StoreValue>) => void,

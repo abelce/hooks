@@ -1,4 +1,4 @@
 const isFunction = (fn: unknown): fn is (...args: any) => any =>
-  toString.call(fn) === '[object Function]';
+  typeof fn === 'function';
 
 export default isFunction;
