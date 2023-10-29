@@ -26,6 +26,7 @@ describe('Test useForm', () => {
 
     const email = document.getElementById('email') as HTMLInputElement;
     fireEvent.change(email, { target: { value: 'abc' } });
+
     await act(async () => {
       await sleep(10);
     });

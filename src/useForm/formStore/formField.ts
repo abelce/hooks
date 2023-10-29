@@ -112,19 +112,23 @@ class FormField implements FormFieldInstance {
     this.options = options;
   }
 
-  public onChange<T extends ChangeEvent<HTMLInputElement>>(e: T) {
+  public onChange<T extends ChangeEvent<HTMLInputElement>>(event: T) {
     const getNextValue = (): StoreValue => {
       /**
        * if e is instance of event, get the value from e.target
        * otherwise return e;
        */
-      if (e instanceof Event) {
-        const target = e.target;
+      if (
+        event?.target &&
+        typeof event?.target === 'object' &&
+        this._valuePropName in event.target
+      ) {
+        const target = event.target;
         // const name = target.name;
 
         return target[this._valuePropName as keyof typeof target];
       }
-      return e;
+      return event;
     };
 
     this.udpateValue(getNextValue());
