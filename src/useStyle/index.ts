@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef } from 'react';
+import useIsomorphicLayoutEffect from '@/useIsomorphicLayoutEffect';
+import { useMemo, useRef } from 'react';
 import { projectName } from '../constants';
 
 let counter = 0;
@@ -7,7 +8,7 @@ const useStyle = (css: string): string => {
   const id = useMemo(() => `${projectName}-use-style-` + counter++, []);
   const ref = useRef<HTMLStyleElement>();
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!ref.current) {
       const style = document.createElement('style');
       style.id = id;
