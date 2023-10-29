@@ -1,3 +1,1 @@
-import toString from './toString';
-
-export default (obj: any) => toString.call(obj) === '[object Object]';
+export default (obj: any): obj is object => typeof obj === 'object';
