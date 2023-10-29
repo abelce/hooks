@@ -18,13 +18,6 @@ describe('Test useForm', () => {
     const password = document.getElementById('password') as HTMLInputElement;
     fireEvent.change(password, { target: { value: '111111' } });
 
-    // result.current?.submit((values) => {
-    //   expect(values).toEqual({
-    //     email: 'test@gmail.com',
-    //     password: '111111'
-    //   })
-    // })
-
     // onFinish
     const submit = document.getElementById('submit');
     submit?.click();
@@ -36,11 +29,28 @@ describe('Test useForm', () => {
     // onFinishFailed
     result.current?.resetFields();
     submit?.click();
+  });
 
-    // await act(async () => {
-    //   await sleep(10);
-    // });
+  it('should submit the form', async () => {
+    const { result } = renderHook(() => useForm());
 
-    // expect(result.current?.errors).toBeNull();
+    render(<Comp form={result.current as FormInstance} />);
+
+    const email = document.getElementById('email') as HTMLInputElement;
+    fireEvent.change(email, { target: { value: 'test@gmail.com' } });
+
+    const password = document.getElementById('password') as HTMLInputElement;
+    fireEvent.change(password, { target: { value: '111111' } });
+
+    await result.current?.submit((errors, values) => {
+      if (errors) {
+        expect(errors).not.toBeNull();
+      } else {
+        expect(values).toEqual({
+          email: 'test@gmail.com',
+          password: '111111',
+        });
+      }
+    });
   });
 });
