@@ -112,8 +112,13 @@ class FormStore implements FormInstance {
       field = this.createFieldState(name, options);
     }
 
+    const fieldInfo = this.getField(name) as FieldInfo;
+
     return {
-      ...(this.getField(name) as FieldInfo),
+      id: fieldInfo.id,
+      name: fieldInfo.name,
+      ref: fieldInfo.ref,
+      disabled: fieldInfo.disabled,
       [field.valuePropName]: field?.getValue(),
       onChange: field.onChange,
     };
