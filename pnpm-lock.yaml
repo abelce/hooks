@@ -11,6 +11,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.22.15
         version: 7.22.15
+      async-validator:
+        specifier: ^4.2.5
+        version: 4.2.5
       core-decorators:
         specifier: ^0.20.0
         version: 0.20.0
@@ -44,7 +47,10 @@ importers:
         version: 18.2.7
       '@umijs/lint':
         specifier: ^4.0.0
-        version: 4.0.81(eslint@8.49.0)(jest@26.6.3)(styled-components@6.0.8)(stylelint@14.16.1)(typescript@5.2.2)
+        version: 4.0.81(eslint@8.49.0)(jest@26.6.3)(styled-components@6.0.8)(stylelint@14.16.1)(typescript@4.9.5)
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
       coveralls:
         specifier: ^3.1.1
         version: 3.1.1
@@ -6104,6 +6110,10 @@ packages:
     resolution: {integrity: sha512-ISvCdHdlTDlH5IpxQJIex7BWBywFWgjJSVdwst+/iQCoEYnyOaQ95+X1JGshuBjGp6nxKUy1jMgE3zPqN7fQdg==}
     hasBin: true
     dev: true
+
+  /async-validator@4.2.5:
+    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
+    dev: false
 
   /asynciterator.prototype@1.0.0:
     resolution: {integrity: sha512-wwHYEIS0Q80f5mosx3L/dfG5t5rjEa9Ft51GTaNt862EnpyGHpgz2RkZvLPp1oF5TnAiTohkEKVEu8pQPJI7Vg==}

@@ -10,11 +10,11 @@ interface Path {
   search: string;
 }
 
-interface Location<State = any> extends Path {
+export interface Location<State = any> extends Path {
   state: State;
 }
 
-type Update = {
+export type Update = {
   action: Action;
   location: Location;
 };
@@ -44,7 +44,7 @@ const parsePath = (path: string): Partial<Path> => {
     }
     const searchIndex = path.indexOf('?');
     if (searchIndex >= 0) {
-      parsedPath.hash = path.substring(searchIndex);
+      parsedPath.search = path.substring(searchIndex);
       path = path.substring(0, searchIndex);
     }
     parsedPath.pathname = path;
@@ -52,7 +52,7 @@ const parsePath = (path: string): Partial<Path> => {
   return parsedPath;
 };
 
-const createLocation = (
+export const createLocation = (
   current: string | Location,
   to: To,
   state?: any,

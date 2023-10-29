@@ -1,6 +1,6 @@
 {
   "name": "let-hooks",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "A react hooks library",
   "keywords": [
     "let-hooks",
@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
+    "async-validator": "^4.2.5",
     "core-decorators": "^0.20.0",
     "js-cookie": "^3.0.5"
   },
@@ -77,6 +78,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
+    "classnames": "^2.3.2",
     "coveralls": "^3.1.1",
     "dumi": "^2.2.7",
     "eslint": "^8.23.0",
