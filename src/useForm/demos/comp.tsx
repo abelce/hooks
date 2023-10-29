@@ -4,7 +4,7 @@ import { FormInstance } from '../formStore/type';
 import './style.scss';
 
 export default ({ form }: { form: FormInstance }) => {
-  const { register, errors, submit, validateFields } = form;
+  const { register, errors, handleSubmit, validateFields } = form;
 
   const onFinish = () => {};
 
@@ -16,7 +16,7 @@ export default ({ form }: { form: FormInstance }) => {
         className={classnames('use-form', {
           ['use-form-error']: !!errors,
         })}
-        onSubmit={submit(onFinish, onFinishFailed)}
+        onSubmit={handleSubmit(onFinish, onFinishFailed)}
       >
         <div
           className={classnames('use-form-item', {

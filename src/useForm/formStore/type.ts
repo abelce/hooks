@@ -38,10 +38,15 @@ export interface FormInstance {
   setFieldsValue: (values: Record<string, StoreValue>) => void;
   scrollField: (name: string) => void;
 
-  submit: (
+  // the callback for form onSubmit method
+  handleSubmit: (
     onFinish: (values: Record<string, StoreValue>) => void,
     onFinishFailed?: (errors: any, values: Record<string, StoreValue>) => void,
-  ) => (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  ) => (event: FormEvent<HTMLFormElement>) => Promise<void>;
+  // submit form
+  submit: (
+    callback: (errors: any, values: Record<string, StoreValue>) => void,
+  ) => Promise<void>;
 
   sub: (fn: Listener) => void;
   flush: () => void;

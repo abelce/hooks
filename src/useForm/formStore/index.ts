@@ -1,3 +1,4 @@
+import isFunction from '@/utils/isFunction';
 import { autobind } from 'core-decorators';
 import { FormEvent } from 'react';
 import FormField from './formField';
@@ -150,10 +151,22 @@ class FormStore implements FormInstance {
       this.fieldsMap[name]?.setValue(value);
     }
   }
+
+  public async submit(
+    callback: (errors: any, values: Record<string, StoreValue>) => void,
+  ) {
+    if (!isFunction(callback)) {
+      throw new Error(
+        `callback must be a function, but got a ${typeof callback}`,
+      );
+    }
+    await this.validate();
+    callback(this.errors, this.getFieldsValue());
+  }
   /**
    * @param handleSubmit
    */
-  public submit(
+  public handleSubmit(
     onFinish: (values: Record<string, StoreValue>) => void,
     onFinishFailed?: (errors: any, values: Record<string, StoreValue>) => void,
   ) {

@@ -3,11 +3,11 @@ import useForm from '..';
 import './style.scss';
 
 export default () => {
-  const { register, errors, submit, validateFields } = useForm({
+  const { register, errors, handleSubmit } = useForm({
     // disabled: true,
     initValues: {
       email: 'test',
-      remember: true,
+      // remember: true,
     },
   });
 
@@ -21,7 +21,7 @@ export default () => {
         className={classnames('use-form', {
           ['use-form-error']: !!errors,
         })}
-        onSubmit={submit(onFinish, onFinishFailed)}
+        onSubmit={handleSubmit(onFinish, onFinishFailed)}
       >
         <div
           className={classnames('use-form-item', {
@@ -101,17 +101,6 @@ export default () => {
 
         <input type="submit" id="submit"></input>
       </form>
-
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            validateFields(['pwd']);
-          }}
-        >
-          validateFields
-        </button>
-      </div>
     </div>
   );
 };
