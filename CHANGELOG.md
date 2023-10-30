@@ -1,3 +1,15 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.1.5](https://github.com/abelce/hooks/compare/v0.1.4...v0.1.5) (2023-10-30)
+
+### Features
+
+- 🎸 add change log ([feb139d](https://github.com/abelce/hooks/commit/feb139da681e7cd872fcae4ac76b8d48b2e97846))
+- change isObject function ([c1cd8b0](https://github.com/abelce/hooks/commit/c1cd8b072f33e7cd3a6d88b74174ddf2dd1dd4d9))
+- release v0.1.4 ([c7051de](https://github.com/abelce/hooks/commit/c7051de3429113d02f91b23a6f8412b52ac28fc1))
+
 ## [0.0.9](https://github.com/abelce/hooks/compare/v0.0.7...v0.0.9) (2023-10-17)
 
 ### Bug Fixes
