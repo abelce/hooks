@@ -29,7 +29,7 @@
     "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "dev": "dumi dev",
-    "docs:build": "APP_ENV=prod dumi build",
+    "docs:build": "dumi build",
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
