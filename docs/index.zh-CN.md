@@ -1,7 +1,7 @@
 ---
 hero:
   title: let-hooks
-  description: A react hooks library
+  description: 一个React hooks库
   actions:
     - text: 指南
       link: /guide

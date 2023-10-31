@@ -1,5 +1,6 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
+import { RELEASE_LINK } from './config';
 
 export default defineConfig({
   outputPath: 'docs-dist',
@@ -17,6 +18,7 @@ export default defineConfig({
         },
         {
           title: '更新日志',
+          link: RELEASE_LINK,
         },
       ],
       'en-US': [
@@ -30,6 +32,7 @@ export default defineConfig({
         },
         {
           title: 'Releases',
+          link: RELEASE_LINK,
         },
       ],
     },
@@ -74,5 +77,8 @@ export default defineConfig({
 
     // 百度统计的 key
     baidu: '96e16d5ad305b33a91c764b493ee07bf',
+  },
+  sitemap: {
+    hostname: 'https://let-hooks.vwood.xyz',
   },
 });
