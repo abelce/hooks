@@ -1,0 +1,30 @@
+.use-form {
+
+    &-item {
+        display: flex;
+        margin-bottom: 12px;
+
+
+    }
+
+    &-item-error {
+      
+
+        .use-form-error-msg {
+            color: red;
+            font-size: 12px;
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+    }
+
+    &-content {}
+
+
+}
+
+.use-form-error {
+    .use-form-item {
+        margin-bottom: 0;
+    }
+}

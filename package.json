@@ -1,8 +1,9 @@
 {
   "name": "let-hooks",
-  "version": "0.0.9",
+  "version": "0.1.4",
   "description": "A react hooks library",
   "keywords": [
+    "let-hooks",
     "react",
     "hooks",
     "typescript"
@@ -23,11 +24,12 @@
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "clean": "rimraf lib es dist",
     "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "dev": "dumi dev",
-    "docs:build": "dumi build",
+    "docs:build": "APP_ENV=prod dumi build",
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
@@ -37,7 +39,8 @@
     "prod-beta": "pnpm run build && pnpm publish --tag beta",
     "prod-canary": "pnpm run build && pnpm publish --tag canary",
     "prepublish": "pnpm clean && pnpm run build",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "version": "standard-version"
   },
   "commitlint": {
     "extends": [
@@ -63,12 +66,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
+    "async-validator": "^4.2.5",
     "core-decorators": "^0.20.0",
     "js-cookie": "^3.0.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^27.5.1",
@@ -76,6 +80,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
+    "classnames": "^2.3.2",
     "coveralls": "^3.1.1",
     "dumi": "^2.2.7",
     "eslint": "^8.23.0",
@@ -91,11 +96,12 @@
     "react-dom": "^18.0.0",
     "stylelint": "^14.9.1",
     "ts-jest": "^26.5.6",
+    "typescript": "^5.2.2",
     "worker-loader": "^2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": "^16.8.0  || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0  || ^17.0.0 || ^18.0.0"
   },
   "publishConfig": {
     "access": "public"

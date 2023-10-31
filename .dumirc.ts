@@ -1,5 +1,6 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
+import { baiduHM } from './config/baidu-hm';
 
 export default defineConfig({
   outputPath: 'docs-dist',
@@ -66,4 +67,8 @@ export default defineConfig({
       .end()
       .before('jsx-ts-tsx');
   },
+  // scripts: process.env.APP_ENV === 'production' ? [baiduHM] : [],
+  scripts: [baiduHM],
 });
+
+console.log('process.env.APP_ENV:', process.env.APP_ENV);

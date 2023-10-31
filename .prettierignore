@@ -1,4 +1,8 @@
 /dist
+/es
+/lib
+/coverage
 *.yaml
 .dumi
 .husky
+node_modules
