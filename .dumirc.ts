@@ -1,6 +1,5 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
-import { baiduHM } from './config/baidu-hm';
 
 export default defineConfig({
   outputPath: 'docs-dist',
@@ -67,5 +66,13 @@ export default defineConfig({
       .end()
       .before('jsx-ts-tsx');
   },
-  scripts: process.env.NODE_ENV === 'production' ? [baiduHM] : [],
+  analytics: {
+    // google analytics 的 key (GA 4)
+    ga_v2: 'G-LCCE2HPTRR',
+    // 若你在使用 GA v1 旧版本，请使用 `ga` 来配置
+    //  ga: 'ga_old_key',
+
+    // 百度统计的 key
+    baidu: '96e16d5ad305b33a91c764b493ee07bf',
+  },
 });
