@@ -67,7 +67,8 @@ export default defineConfig({
       .end()
       .before('jsx-ts-tsx');
   },
-  scripts: process.env.APP_ENV === 'production' ? [baiduHM] : [],
+  // scripts: process.env.APP_ENV === 'production' ? [baiduHM] : [],
+  scripts: [baiduHM],
 });
 
 console.log('process.env.APP_ENV:', process.env.APP_ENV);
