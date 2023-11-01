@@ -53,7 +53,7 @@ class FormStore implements FormInstance {
     };
   }
 
-  private createFieldState(name: string, options: FormFielOptions) {
+  private createFieldState(name: string, options: FormFielOptions = {}) {
     return (this.fieldsMap[name] = new FormField(this, name, options));
   }
 
@@ -71,7 +71,7 @@ class FormStore implements FormInstance {
    * @param name
    * @param partialFieldState
    */
-  private updateFieldState(name: string, options: FormFielOptions) {
+  private updateFieldState(name: string, options?: FormFielOptions) {
     this.fieldsMap[name].updateOptions(options);
     return this.fieldsMap[name];
   }
@@ -105,7 +105,7 @@ class FormStore implements FormInstance {
    * @param name
    * @returns
    */
-  public register(name: string, options: FormFielOptions) {
+  public register(name: string, options: FormFielOptions = {}) {
     let field = this.fieldsMap[name];
     if (field) {
       field = this.updateFieldState(name, options);

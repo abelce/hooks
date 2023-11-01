@@ -23,7 +23,7 @@ export interface FormInstance {
   errors: Record<string, string[]> | null;
   isDirty: boolean;
   // methods
-  register: (name: string, options: FormFielOptions) => RegisterReturn;
+  register: (name: string, options?: FormFielOptions) => RegisterReturn;
   getFieldValue: (name: string) => StoreValue;
   getFieldError: (name: string) => string[];
   getFieldsError: (nameList?: string[]) => FieldError[];
@@ -78,27 +78,12 @@ export type FieldInfo = {
 export interface FormFieldInstance extends FieldInfo {
   valuePropName: string;
   validate: (shouldFlush?: boolean) => Promise<void>;
-  updateOptions: (options: FormFielOptions) => void;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  updateOptions: (options?: FormFielOptions) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement> | any) => void;
   resetField: () => void;
   setValue: (value: StoreValue) => void;
   getValue: () => StoreValue;
 }
-
-// export type RuleType =
-//   | 'string'
-//   | 'number'
-//   | 'boolean'
-//   | 'method'
-//   | 'regexp'
-//   | 'integer'
-//   | 'float'
-//   | 'object'
-//   | 'enum'
-//   | 'date'
-//   | 'url'
-//   | 'hex'
-//   | 'email';
 
 type AggregationRule = BaseRule & Partial<ValidatorRule>;
 
