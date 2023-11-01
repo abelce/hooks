@@ -11,6 +11,7 @@ toc: content
 ## 代码演示
 
 <code src="let-hooks/useForm/demos/base.tsx" title="基本用法"></code>
+<code src="let-hooks/useForm/demos/customComponent.tsx" title="自定义组件" description="`register`的结果传递给自定义组件，组件接收对应的props即可"></code>
 
 ## 参数
 

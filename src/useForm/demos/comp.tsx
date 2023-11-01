@@ -4,7 +4,7 @@ import { FormInstance } from '../formStore/type';
 import './style.scss';
 
 export default ({ form }: { form: FormInstance }) => {
-  const { register, errors, handleSubmit, validateFields } = form;
+  const { register, errors, handleSubmit } = form;
 
   const onFinish = () => {};
 
@@ -70,17 +70,6 @@ export default ({ form }: { form: FormInstance }) => {
 
         <input type="submit" id="submit"></input>
       </form>
-
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            validateFields(['pwd']);
-          }}
-        >
-          validateFields
-        </button>
-      </div>
     </div>
   );
 };
