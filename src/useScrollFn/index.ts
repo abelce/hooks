@@ -7,6 +7,7 @@ type ScrollData = {
   scrollTop: number;
   scrollLeft: number;
   scrollHeight: number;
+  scrollWidth: number;
 };
 
 const useScrollFn = (
@@ -24,6 +25,7 @@ const useScrollFn = (
           scrollTop: ele.scrollTop,
           scrollLeft: ele.scrollLeft,
           scrollHeight: ele.scrollHeight,
+          scrollWidth: ele.scrollWidth,
         };
         callback.current(data);
         return;
@@ -36,6 +38,7 @@ const useScrollFn = (
             scrollTop: ele.scrollingElement?.scrollTop,
             scrollLeft: ele.scrollingElement?.scrollLeft,
             scrollHeight: ele.scrollingElement?.scrollHeight,
+            scrollWidth: ele.scrollingElement?.scrollWidth,
           };
           callback.current(data);
         } else {
@@ -48,6 +51,8 @@ const useScrollFn = (
             scrollHeight:
               document.documentElement.scrollHeight ||
               document.body.scrollHeight,
+            scrollWidth:
+              document.documentElement.scrollWidth || document.body.scrollWidth,
           };
           callback.current(data);
         }
