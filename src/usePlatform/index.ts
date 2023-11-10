@@ -2,17 +2,17 @@ import isBrowser from '@/utils/isBrowser';
 import { useMemo } from 'react';
 
 export interface UsePlatformReturn {
-  isSafari?: () => boolean;
-  isIOS?: () => boolean;
-  isIPadOS?: () => boolean;
-  isAndroid?: () => boolean;
-  isMobile?: () => boolean;
-  isFirefox?: () => boolean;
-  isWebKit?: () => boolean;
-  isChrome?: () => boolean;
-  isOpera?: () => boolean;
-  isMac?: () => boolean;
-  isWindows?: () => boolean;
+  isSafari: () => boolean;
+  isIOS: () => boolean;
+  isIPadOS: () => boolean;
+  isAndroid: () => boolean;
+  isMobile: () => boolean;
+  isFirefox: () => boolean;
+  isWebKit: () => boolean;
+  isChrome: () => boolean;
+  isOpera: () => boolean;
+  isMac: () => boolean;
+  isWindows: () => boolean;
   isBrowser: () => boolean;
 }
 
@@ -21,6 +21,17 @@ const usePlatform = () => {
     if (!isBrowser()) {
       // ssr
       return {
+        isSafari: () => false,
+        isIOS: () => false,
+        isIPadOS: () => false,
+        isAndroid: () => false,
+        isMobile: () => false,
+        isFirefox: () => false,
+        isWebKit: () => false,
+        isChrome: () => false,
+        isOpera: () => false,
+        isMac: () => false,
+        isWindows: () => false,
         isBrowser,
       };
     }

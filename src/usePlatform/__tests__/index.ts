@@ -32,6 +32,7 @@ describe('Test usePlatform', () => {
       isOpera: expect.any(Function),
       isMac: expect.any(Function),
       isWindows: expect.any(Function),
+      isBrowser: expect.any(Function),
     });
   });
 
