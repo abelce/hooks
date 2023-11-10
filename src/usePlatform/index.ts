@@ -1,21 +1,29 @@
+import isBrowser from '@/utils/isBrowser';
 import { useMemo } from 'react';
 
 export interface UsePlatformReturn {
-  isSafari: () => boolean;
-  isIOS: () => boolean;
-  isIPadOS: () => boolean;
-  isAndroid: () => boolean;
-  isMobile: () => boolean;
-  isFirefox: () => boolean;
-  isWebKit: () => boolean;
-  isChrome: () => boolean;
-  isOpera: () => boolean;
-  isMac: () => boolean;
-  isWindows: () => boolean;
+  isSafari?: () => boolean;
+  isIOS?: () => boolean;
+  isIPadOS?: () => boolean;
+  isAndroid?: () => boolean;
+  isMobile?: () => boolean;
+  isFirefox?: () => boolean;
+  isWebKit?: () => boolean;
+  isChrome?: () => boolean;
+  isOpera?: () => boolean;
+  isMac?: () => boolean;
+  isWindows?: () => boolean;
+  isBrowser: () => boolean;
 }
 
 const usePlatform = () => {
-  const utils = useMemo(() => {
+  const utils = useMemo((): UsePlatformReturn => {
+    if (!isBrowser()) {
+      // ssr
+      return {
+        isBrowser,
+      };
+    }
     const isSafari = () => /Safari/i.test(navigator.userAgent);
     // ios
     const isIOS = () => /iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -52,6 +60,7 @@ const usePlatform = () => {
       isOpera: () => /Opera|OPR/.test(navigator.userAgent),
       isMac: () => navigator.userAgent.indexOf('Mac') > -1,
       isWindows: () => navigator.userAgent.indexOf('Windows') > -1,
+      isBrowser,
     };
   }, []);
 
