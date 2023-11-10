@@ -25,7 +25,10 @@ export default () => {
   return (
     <div>
       <div>{typing ? '输入中...' : '未输入'}</div>
-      <textarea ref={_ref} style={{ width: '100%' }}></textarea>
+      <textarea
+        ref={_ref}
+        style={{ width: '100%', maxWidth: '100%', minWidth: '100%' }}
+      ></textarea>
     </div>
   );
 };
