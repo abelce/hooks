@@ -10,7 +10,7 @@ toc: content
 
 ## 代码演示
 
-<code src="let-hooks/useEffectOnce/demos/base.tsx" title="基本用法"></code>
+<code src="let-hooks/useEffectOnce/demos/base.tsx" title="基本用法"  description="点击按钮effect只执行一次"></code>
 
 ## 参数
 
