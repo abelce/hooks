@@ -24,7 +24,7 @@ const useStyle = (
     ref.current.innerText = css;
 
     return () => {
-      if (ref.current) {
+      if (ref.current && doc.head.contains(ref.current)) {
         doc.head.removeChild(ref.current);
         ref.current = undefined;
       }
